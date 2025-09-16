@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Education Jeopardy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#0e2e6d',
+                        accent: '#ff6b6b',
+                        jeopardy: '#000080',
+                        correct: '#4ade80',
+                        incorrect: '#f87171'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0e2e6d 0%, #1a56db 100%);
+            min-height: 100vh;
+        }
+        
+        .game-cell {
+            transition: all 0.3s ease;
+        }
+        
+        .game-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .used-cell {
+            background-color: #94a3b8 !important;
+            color: #64748b !important;
+            cursor: not-allowed !important;
+        }
+        
+        .daily-double {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
+        
+        .scoreboard {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .modal {
+            animation: modalAppear 0.3s ease-out forwards;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .resource-footer {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-2xl">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-jeopardy mb-2">Drug Education Jeopardy</h1>
+                <p class="text-gray-600">Learn about substance abuse and recovery in a fun, educational game</p>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-center mb-6">Team Setup</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Team 1 Name</label>
+                        <input type="text" id="team1-name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter team name" value="Team Alpha">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Team 2 Name</label>
+                        <input type="text" id="team2-name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter team name" value="Team Beta">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Team 3 Name (Optional)</label>
+                        <input type="text" id="team3-name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter team name">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="start-game-btn" class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 px-8 rounded-full text-xl hover:from-blue-700 hover:to-blue-900 transition-all transform hover:scale-105 shadow-lg">
+                    Start Game <i class="fas fa-play ml-2"></i>
+                </button>
+            </div>
+            
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="font-bold text-blue-800 mb-2">Game Instructions</h3>
+                <ul class="text-sm text-blue-700 list-disc pl-5 space-y-1">
+                    <li>Select 2 or 3 teams to play</li>
+                    <li>Click on questions to reveal them</li>
+                    <li>Answer questions correctly to earn points</li>
+                    <li>Watch out for Daily Doubles - you can wager!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden min-h-screen">
+        <!-- Scoreboard -->
+        <div id="scoreboard" class="scoreboard bg-white mx-4 mt-4 rounded-xl p-4">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex gap-2">
+                    <button id="home-screen-btn" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home Screen
+                    </button>
+                    <button id="reset-game-btn" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Reset Game
+                    </button>
+                </div>
+                <div id="control-indicator" class="text-center">
+                    <div class="text-sm text-gray-600">Board Control:</div>
+                    <div id="controlling-team" class="font-bold text-lg text-primary">Team Alpha</div>
+                </div>
+                <button id="finish-game-btn" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">
+                    <i class="fas fa-trophy mr-2"></i>Finish Game
+                </button>
+            </div>
+            <div id="teams-container" class="flex flex-wrap gap-4 justify-center w-full">
+                <!-- Teams will be added here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Game Board -->
+        <div id="game-board" class="p-4">
+            <div id="round-indicator" class="text-center text-white text-xl font-bold mb-4">Round 1</div>
+            <div id="categories" class="grid grid-cols-1 md:grid-cols-6 gap-2 mb-2">
+                <!-- Categories will be added here dynamically -->
+            </div>
+            <div id="questions" class="grid grid-cols-1 md:grid-cols-6 gap-2">
+                <!-- Questions will be added here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Question Modal -->
+        <div id="question-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+            <div class="modal bg-white rounded-2xl w-full max-w-3xl p-6 max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="question-category" class="text-2xl font-bold text-primary"></h2>
+                    <button id="close-question" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <div id="question-points" class="text-3xl font-bold text-jeopardy"></div>
+                        <div id="timer-display" class="hidden text-2xl font-bold text-red-600">
+                            <i class="fas fa-clock mr-2"></i><span id="timer-seconds">30</span>s
+                        </div>
+                    </div>
+                    <div id="question-text" class="text-xl text-center bg-blue-50 p-6 rounded-lg border border-blue-200 min-h-[120px] flex items-center justify-center">
+                        <!-- Question will appear here -->
+                    </div>
+                </div>
+                
+                <div id="answer-section" class="hidden">
+                    <div class="text-center text-xl font-bold mb-4">Answer:</div>
+                    <div id="answer-text" class="text-xl text-center bg-green-50 p-6 rounded-lg border border-green-200 mb-6">
+                        <!-- Answer will appear here -->
+                    </div>
+                </div>
+                
+                <div id="daily-double-section" class="hidden mb-6">
+                    <div class="text-center text-2xl font-bold text-accent mb-4 animate-pulse">🎯 DAILY DOUBLE! 🎯</div>
+                    <div class="text-center mb-4">
+                        <div class="mb-2"><span id="controlling-team-dd" class="font-bold text-primary"></span> has control!</div>
+                        <div>Enter your wager (min: $5, max: <span id="max-wager"></span>):</div>
+                    </div>
+                    <div class="flex justify-center items-center gap-3">
+                        <button id="wager-min" class="bg-gray-500 text-white px-3 py-2 rounded hover:bg-gray-600">Min ($5)</button>
+                        <input type="number" id="wager-input" class="w-32 p-3 border border-gray-300 rounded-lg text-center" min="5">
+                        <button id="wager-max" class="bg-gray-500 text-white px-3 py-2 rounded hover:bg-gray-600">Max</button>
+                        <button id="submit-wager" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit Wager</button>
+                    </div>
+                </div>
+                
+                <div id="final-jeopardy-section" class="hidden mb-6">
+                    <div class="text-center text-3xl font-bold text-accent mb-4 animate-pulse">🏆 FINAL JEOPARDY! 🏆</div>
+                    <div class="text-center mb-4">
+                        <div class="text-lg mb-2">All teams can wager!</div>
+                        <div class="text-sm text-gray-600">Minimum wager: $0 | Maximum wager: Your current score</div>
+                    </div>
+                    <div id="final-wagers" class="space-y-3 max-w-md mx-auto">
+                        <!-- Wager inputs will appear here -->
+                    </div>
+                    <div class="text-center mt-6">
+                        <button id="submit-final-wagers" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-blue-700 text-lg font-bold">
+                            <i class="fas fa-check mr-2"></i>Lock In Wagers
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="scoring-controls" class="hidden mt-6">
+                    <div class="text-center font-bold mb-3">Scoring:</div>
+                    <div id="team-scoring-buttons" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <!-- Team scoring buttons will appear here -->
+                    </div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <button id="reveal-answer" class="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 mr-3">
+                        Reveal Answer
+                    </button>
+                    <button id="return-to-board" class="bg-gray-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600">
+                        Return to Board
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Round Transition Modal -->
+        <div id="round-transition" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+            <div class="modal bg-white rounded-2xl w-full max-w-md p-8 text-center">
+                <h2 id="transition-title" class="text-3xl font-bold text-jeopardy mb-4">Round 2</h2>
+                <p class="text-gray-600 mb-6">Get ready for the next round!</p>
+                <button id="continue-round" class="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700">
+                    Continue
+                </button>
+            </div>
+        </div>
+        
+        <!-- Game Over Modal -->
+        <div id="game-over" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+            <div class="modal bg-white rounded-2xl w-full max-w-lg p-8 text-center">
+                <h2 class="text-3xl font-bold text-jeopardy mb-4">Game Over!</h2>
+                <div id="final-scores" class="mb-6">
+                    <!-- Final scores will appear here -->
+                </div>
+                <div id="winner-announcement" class="text-2xl font-bold text-accent mb-6">
+                    <!-- Winner announcement will appear here -->
+                </div>
+                <button id="new-game" class="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 mr-3">
+                    New Game
+                </button>
+                <button id="view-resources" class="bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800">
+                    View Resources
+                </button>
+            </div>
+        </div>
+        
+        <!-- Resources Modal -->
+        <div id="resources-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+            <div class="modal bg-white rounded-2xl w-full max-w-4xl p-6 max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-2xl font-bold text-primary">Educational Resources</h2>
+                    <button id="close-resources" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-3">Prevention Resources</h3>
+                        <ul class="text-sm text-blue-700 space-y-2">
+                            <li><a href="https://www.samhsa.gov/prevention" target="_blank" class="hover:underline">SAMHSA Prevention</a></li>
+                            <li><a href="https://www.drugabuse.gov/drug-topics/prevention" target="_blank" class="hover:underline">NIDA Prevention</a></li>
+                            <li><a href="https://www.cdc.gov/drugoverdose/prevention/" target="_blank" class="hover:underline">CDC Drug Overdose Prevention</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-3">Treatment & Recovery</h3>
+                        <ul class="text-sm text-green-700 space-y-2">
+                            <li><a href="https://www.samhsa.gov/find-treatment" target="_blank" class="hover:underline">Find Treatment</a></li>
+                            <li><a href="https://www.aa.org/" target="_blank" class="hover:underline">Alcoholics Anonymous</a></li>
+                            <li><a href="https://www.na.org/" target="_blank" class="hover:underline">Narcotics Anonymous</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-yellow-800 mb-3">Crisis Support</h3>
+                        <ul class="text-sm text-yellow-700 space-y-2">
+                            <li><strong>National Suicide Prevention Lifeline:</strong> 988</li>
+                            <li><strong>SAMHSA National Helpline:</strong> 1-800-662-4357</li>
+                            <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-3">Educational Materials</h3>
+                        <ul class="text-sm text-purple-700 space-y-2">
+                            <li><a href="https://www.drugabuse.gov/publications" target="_blank" class="hover:underline">NIDA Publications</a></li>
+                            <li><a href="https://www.samhsa.gov/data/" target="_blank" class="hover:underline">SAMHSA Data & Reports</a></li>
+                            <li><a href="https://www.cdc.gov/drugoverdose/data/" target="_blank" class="hover:underline">CDC Overdose Data</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resource Footer -->
+    <div class="resource-footer fixed bottom-0 left-0 right-0 text-white text-center py-2 text-sm">
+        <p>For immediate help: National Suicide Prevention Lifeline 988 | SAMHSA Helpline 1-800-662-4357</p>
+    </div>
+
+    <script src="gameData.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
