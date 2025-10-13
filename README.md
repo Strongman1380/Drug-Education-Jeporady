@@ -1,6 +1,27 @@
 # Drug Education Jeopardy
 
-An educational web-based Jeopardy game focused on drug education, substance abuse prevention, and recovery awareness. This interactive game helps players learn important facts about drugs, alcohol, addiction, treatment, and recovery in an engaging format.
+An **authentic Jeopardy!-themed** educational web-based game focused on drug education, substance abuse prevention, and recovery awareness. This interactive game helps players learn important facts about drugs, alcohol, addiction, treatment, and recovery in an engaging, broadcast-quality format.
+
+## 🎨 New Features (Version 2.0)
+
+### Authentic Jeopardy Design
+- **Classic Jeopardy blue background** (#060CE9) with gradient effects
+- **Iconic gold text** (#FFCC00) matching the TV show aesthetic  
+- **Swiss911/Arial Black fonts** for authentic game show appearance
+- **Professional broadcast-quality styling** throughout
+
+### Dynamic Question System
+- **200+ unique questions** across 9 comprehensive categories
+- **Randomized question selection** every game for unlimited replayability
+- **Difficulty-based organization** (Easy to Expert levels)
+- **Questions sourced from research** on addiction, treatment, and recovery
+
+### Enhanced Gameplay
+- **Glowing gold effects** on hover and Daily Doubles
+- **Smooth animations** and transitions
+- **Used cells** visually dimmed after selection
+- **Dramatic score displays** with team cards
+- **Professional modal presentations**
 
 ## Features
 
@@ -102,8 +123,8 @@ The game includes links to important resources:
 ## Installation and Usage
 
 ### Local Setup
-1. Download all files to a local directory
-2. Open `index.html` in a web browser
+1. Clone or download this repository
+2. Open `index.html` in a modern web browser
 3. No server setup required - runs entirely in the browser
 
 ### Web Hosting
@@ -111,35 +132,96 @@ The game includes links to important resources:
 2. Ensure all files are in the same directory
 3. Access via the hosted URL
 
+### For Smart Boards
+1. Open `index.html` in the smart board's browser
+2. Use touch or stylus to interact with the game
+3. Full-screen mode recommended for best experience
+
 ### Browser Compatibility
 - **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
 - **Mobile Browsers**: iOS Safari, Android Chrome
-- **Requirements**: JavaScript enabled, internet connection for external resources
+- **Requirements**: JavaScript enabled, internet connection for fonts and icons
+
+## Documentation
+
+- **[QUESTION_SYSTEM.md](QUESTION_SYSTEM.md)** - Complete guide to the dynamic question bank
+- **[DESIGN_GUIDE.md](DESIGN_GUIDE.md)** - Comprehensive design and styling documentation
+
+The game features 9 comprehensive categories with 200+ questions:
+
+1. **Alcohol Facts** - Legal drinking age, BAC levels, family impact, statistics
+2. **Drug Types & Classifications** - Opioids, stimulants, hallucinogens, legal status
+3. **Health Effects & Consequences** - Physical/mental health impacts, brain changes
+4. **Prevention & Protective Factors** - SAMHSA guidelines, coping skills, family support
+5. **Treatment & Recovery** - Evidence-based treatment, NIDA principles, harm reduction
+6. **Legal Consequences & Social Impact** - Criminal justice, employment, family effects
+7. **Brain Science & Addiction** - Neurotransmitters, reward pathways, tolerance
+8. **Myths & Facts** - TRUE/FALSE questions debunking addiction misconceptions  
+9. **Statistics & Research** - Data from UNODC, SAMHSA, current research
+
+### Difficulty Levels
+- **Level 1 (Easy)**: 200/400 points - Basic facts and definitions
+- **Level 2 (Medium)**: 400/800 points - Detailed knowledge
+- **Level 3 (Hard)**: 600-1200 points - Complex concepts
+- **Level 4 (Very Hard)**: 1000-1600 points - Advanced understanding
+- **Level 5 (Expert)**: 2000 points - Research-level knowledge
 
 ## Customization
 
 ### Adding Questions
-Edit `gameData.js` to modify or add questions:
+Edit `questionBank.js` to add questions to any category:
 ```javascript
-{
-    points: 400,
-    question: "Your question text here",
-    answer: "What is the correct answer?",
-    dailyDouble: false  // Set to true for Daily Double questions
-}
+// Add to questionBank.js
+"Category Name": [
+    { 
+        difficulty: 1,  // 1-5 based on complexity
+        question: "Your question text here in Jeopardy format",
+        answer: "What is the answer?"
+    },
+    // Add more questions...
+]
 ```
+
+See [QUESTION_SYSTEM.md](QUESTION_SYSTEM.md) for detailed instructions.
 
 ### Styling Changes
 - Modify CSS custom properties in the `<style>` section of `index.html`
-- Tailwind classes can be adjusted throughout the HTML
-- Color scheme defined in `tailwind.config`
+- Jeopardy colors: Blue (#060CE9), Gold (#FFCC00), Dark Blue (#0000A0)
+- See [DESIGN_GUIDE.md](DESIGN_GUIDE.md) for complete styling documentation
 
-### Adding Categories
-1. Add new category to the `categories` array in `gameData.js`
-2. Add corresponding questions array with 5 questions
-3. Adjust grid layout if needed (currently supports 6 categories)
+## Technical Implementation
 
-## Educational Goals
+### Files Structure
+```
+Drug Education Jeopardy/
+├── index.html          # Main HTML with Jeopardy-styled interface
+├── gameData.js         # Original game structure and Final Jeopardy
+├── questionBank.js     # 200+ questions with difficulty ratings
+├── game.js            # Game logic and dynamic question generation
+├── README.md          # This documentation file
+├── QUESTION_SYSTEM.md # Question bank system documentation
+├── DESIGN_GUIDE.md    # Design and styling guide
+└── Files/
+    ├── impact         # Research on parental addiction impact
+    ├── drug research  # Comprehensive drug analysis
+    └── Path to recovery # SAMHSA recovery guidelines
+```
+
+### Technologies Used
+- **HTML5**: Semantic markup and structure
+- **CSS3**: Custom styling with Jeopardy theme
+- **Tailwind CSS**: Utility classes for responsive design
+- **JavaScript (ES6+)**: Game logic and dynamic question generation
+- **Font Awesome**: Icons for enhanced UI
+- **Google Fonts**: Swiss911-style fonts for authenticity
+
+### Key Features Implementation
+- **Object-Oriented Design**: Game logic in JeopardyGame class
+- **Dynamic Question Generation**: Random selection from 200+ question pool
+- **Difficulty Mapping**: Automatic difficulty-to-point-value matching
+- **Event-Driven Architecture**: Responsive to user interactions
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Accessibility**: Keyboard navigation support (ESC key)
 
 This game aims to:
 - **Increase Awareness**: Educate about the risks and realities of substance abuse
