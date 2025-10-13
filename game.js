@@ -11,6 +11,7 @@ class JeopardyGame {
         this.controllingTeam = 0; // Index of team with board control
         this.timer = null;
         this.timeRemaining = 30;
+        this.gameData = null; // Will hold dynamically generated questions
         
         this.initializeEventListeners();
     }
@@ -68,6 +69,9 @@ class JeopardyGame {
             this.teams.push({ name: team3Name, score: 0, id: 3 });
         }
         
+        // Generate fresh questions for this game
+        this.generateFreshGameData();
+        
         // Hide setup screen and show game screen
         document.getElementById('setup-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
@@ -79,8 +83,79 @@ class JeopardyGame {
         this.updateBoardControl();
     }
     
+    generateFreshGameData() {
+        // Generate new questions for both rounds with randomization
+        console.log('Generating fresh game data...');
+        
+        this.gameData = {
+            round1: {
+                categories: Object.keys(questionBank).slice(0, 6), // Use first 6 categories
+                questions: {}
+            },
+            round2: {
+                categories: Object.keys(questionBank).slice(0, 6), // Same categories, different questions
+                questions: {}
+            },
+            finalJeopardy: gameData.finalJeopardy // Keep the original final jeopardy
+        };
+        
+        // Generate Round 1 questions
+        this.gameData.round1.categories.forEach(category => {
+            this.gameData.round1.questions[category] = this.selectRandomQuestions(category, 1);
+        });
+        
+        // Generate Round 2 questions (different from Round 1)
+        this.gameData.round2.categories.forEach(category => {
+            this.gameData.round2.questions[category] = this.selectRandomQuestions(category, 2);
+        });
+        
+        console.log('Game data generated:', this.gameData);
+    }
+    
+    selectRandomQuestions(category, round) {
+        const pointValues = round === 1 ? [200, 400, 600, 800, 1000] : [400, 800, 1200, 1600, 2000];
+        const difficultyMap = {
+            200: 1, 400: 2, 600: 3, 800: 3, 1000: 4,
+            1200: 3, 1600: 4, 2000: 5
+        };
+        
+        const selectedQuestions = [];
+        
+        pointValues.forEach(points => {
+            const difficulty = difficultyMap[points];
+            const availableQuestions = questionBank[category]?.filter(q => q.difficulty === difficulty) || [];
+            
+            if (availableQuestions.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+                const selected = availableQuestions[randomIndex];
+                
+                selectedQuestions.push({
+                    points: points,
+                    question: selected.question,
+                    answer: selected.answer,
+                    dailyDouble: false // Will be assigned later
+                });
+            } else {
+                // Fallback to any question from this category
+                const allCategoryQuestions = questionBank[category] || [];
+                if (allCategoryQuestions.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * allCategoryQuestions.length);
+                    const selected = allCategoryQuestions[randomIndex];
+                    selectedQuestions.push({
+                        points: points,
+                        question: selected.question,
+                        answer: selected.answer,
+                        dailyDouble: false
+                    });
+                }
+            }
+        });
+        
+        return selectedQuestions;
+    }
+    
     setupGameBoard() {
-        const roundData = this.currentRound === 1 ? gameData.round1 : gameData.round2;
+        const roundData = this.currentRound === 1 ? this.gameData.round1 : this.gameData.round2;
         
         // Update round indicator
         document.getElementById('round-indicator').textContent = `Round ${this.currentRound}`;
@@ -115,7 +190,7 @@ class JeopardyGame {
                 
                 // Check if this is a daily double
                 const questionData = roundData.questions[category][row];
-                if (questionData.dailyDouble) {
+                if (questionData && questionData.dailyDouble) {
                     questionDiv.classList.add('daily-double');
                 }
                 
@@ -130,12 +205,41 @@ class JeopardyGame {
                 questionsContainer.appendChild(questionDiv);
             });
         }
+        
+        // Randomly assign Daily Doubles for this round if not already assigned
+        this.assignDailyDoubles(roundData);
+    }
+    
+    assignDailyDoubles(roundData) {
+        // Count existing Daily Doubles
+        let ddCount = 0;
+        roundData.categories.forEach(category => {
+            if (roundData.questions[category]) {
+                roundData.questions[category].forEach(q => {
+                    if (q.dailyDouble) ddCount++;
+                });
+            }
+        });
+        
+        // Assign 2 Daily Doubles per round randomly
+        while (ddCount < 2) {
+            const randomCatIndex = Math.floor(Math.random() * roundData.categories.length);
+            const randomQuestionIndex = Math.floor(Math.random() * 5);
+            const category = roundData.categories[randomCatIndex];
+            
+            if (roundData.questions[category] && roundData.questions[category][randomQuestionIndex]) {
+                if (!roundData.questions[category][randomQuestionIndex].dailyDouble) {
+                    roundData.questions[category][randomQuestionIndex].dailyDouble = true;
+                    ddCount++;
+                }
+            }
+        }
     }
     
     selectQuestion(category, questionIndex, questionKey) {
         if (this.usedQuestions.has(questionKey)) return;
         
-        const roundData = this.currentRound === 1 ? gameData.round1 : gameData.round2;
+        const roundData = this.currentRound === 1 ? this.gameData.round1 : this.gameData.round2;
         const questionData = roundData.questions[category][questionIndex];
         
         this.currentQuestion = {
@@ -424,10 +528,10 @@ class JeopardyGame {
         const finalSection = document.getElementById('final-jeopardy-section');
         const wagersContainer = document.getElementById('final-wagers');
         
-        // Set up Final Jeopardy question
-        categoryElement.textContent = gameData.finalJeopardy.category;
+        // Set up Final Jeopardy question from gameData
+        categoryElement.textContent = this.gameData.finalJeopardy.category;
         pointsElement.textContent = 'FINAL JEOPARDY';
-        questionElement.textContent = gameData.finalJeopardy.question;
+        questionElement.textContent = this.gameData.finalJeopardy.question;
         
         // Hide other sections
         document.getElementById('answer-section').classList.add('hidden');
@@ -530,7 +634,7 @@ class JeopardyGame {
         const answerSection = document.getElementById('answer-section');
         const answerText = document.getElementById('answer-text');
         
-        answerText.textContent = gameData.finalJeopardy.answer;
+        answerText.textContent = this.gameData.finalJeopardy.answer;
         answerSection.classList.remove('hidden');
         
         // Show Final Jeopardy scoring
@@ -698,6 +802,10 @@ class JeopardyGame {
         this.finalWagers = {};
         this.gameState = 'playing';
         this.controllingTeam = 0;
+        
+        // Generate fresh questions for new game
+        this.generateFreshGameData();
+        
         // Stop any running timer
         this.stopTimer();
         // Update display
