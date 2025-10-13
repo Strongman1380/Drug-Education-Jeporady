@@ -166,7 +166,7 @@ class JeopardyGame {
         
         roundData.categories.forEach(category => {
             const categoryDiv = document.createElement('div');
-            categoryDiv.className = 'bg-jeopardy text-white p-4 text-center font-bold text-lg rounded-lg';
+            categoryDiv.className = 'category-cell text-white p-4 text-center font-bold text-xl rounded-lg jeopardy-font gold-text uppercase tracking-wide';
             categoryDiv.textContent = category;
             categoriesContainer.appendChild(categoryDiv);
         });
@@ -182,7 +182,7 @@ class JeopardyGame {
                 const questionDiv = document.createElement('div');
                 const questionKey = `${this.currentRound}-${colIndex}-${row}`;
                 
-                questionDiv.className = 'game-cell bg-blue-600 text-white p-6 text-center font-bold text-2xl rounded-lg cursor-pointer hover:bg-blue-700';
+                questionDiv.className = 'game-cell text-white p-6 text-center font-bold text-3xl rounded-lg cursor-pointer jeopardy-font gold-text';
                 questionDiv.textContent = `$${pointValues[row]}`;
                 questionDiv.dataset.category = category;
                 questionDiv.dataset.questionIndex = row;
@@ -197,7 +197,7 @@ class JeopardyGame {
                 // Check if question is already used
                 if (this.usedQuestions.has(questionKey)) {
                     questionDiv.classList.add('used-cell');
-                    questionDiv.classList.remove('cursor-pointer', 'hover:bg-blue-700');
+                    questionDiv.classList.remove('cursor-pointer');
                 } else {
                     questionDiv.addEventListener('click', () => this.selectQuestion(category, row, questionKey));
                 }
@@ -387,11 +387,11 @@ class JeopardyGame {
         const controllingTeamElement = document.getElementById('controlling-team');
         if (controllingTeamElement && this.teams[this.controllingTeam]) {
             controllingTeamElement.textContent = this.teams[this.controllingTeam].name;
-            controllingTeamElement.className = 'font-bold text-lg text-primary animate-pulse';
+            controllingTeamElement.className = 'jeopardy-font font-bold text-xl text-white white-text-shadow animate-pulse';
             
             // Remove animation after 2 seconds
             setTimeout(() => {
-                controllingTeamElement.className = 'font-bold text-lg text-primary';
+                controllingTeamElement.className = 'jeopardy-font font-bold text-xl text-white white-text-shadow';
             }, 2000);
         }
     }
@@ -451,14 +451,14 @@ class JeopardyGame {
         
         this.teams.forEach(team => {
             const teamDiv = document.createElement('div');
-            teamDiv.className = 'text-center bg-gray-100 p-4 rounded-lg min-w-[150px]';
+            teamDiv.className = 'team-score-card text-center p-4 rounded-lg min-w-[180px]';
             
             const nameDiv = document.createElement('div');
-            nameDiv.className = 'font-bold text-lg text-gray-800';
+            nameDiv.className = 'jeopardy-font text-xl gold-text uppercase tracking-wide mb-2';
             nameDiv.textContent = team.name;
             
             const scoreDiv = document.createElement('div');
-            scoreDiv.className = `text-2xl font-bold ${team.score >= 0 ? 'text-green-600' : 'text-red-600'}`;
+            scoreDiv.className = `jeopardy-font text-4xl font-black ${team.score >= 0 ? 'text-white' : 'text-red-400'} white-text-shadow`;
             scoreDiv.textContent = `$${team.score.toLocaleString()}`;
             
             teamDiv.appendChild(nameDiv);
