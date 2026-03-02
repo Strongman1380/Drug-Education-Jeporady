@@ -84,32 +84,22 @@ class JeopardyGame {
     }
     
     generateFreshGameData() {
-        // Generate new questions for both rounds with randomization
-        console.log('Generating fresh game data...');
-        
+        // Round 1 uses the first 6 categories; Round 2 uses the last 6 (different topics)
+        const round1Cats = ROUND1_CATEGORIES;
+        const round2Cats = ROUND2_CATEGORIES;
+
         this.gameData = {
-            round1: {
-                categories: Object.keys(questionBank).slice(0, 6), // Use first 6 categories
-                questions: {}
-            },
-            round2: {
-                categories: Object.keys(questionBank).slice(0, 6), // Same categories, different questions
-                questions: {}
-            },
-            finalJeopardy: gameData.finalJeopardy // Keep the original final jeopardy
+            round1: { categories: round1Cats, questions: {} },
+            round2: { categories: round2Cats, questions: {} },
+            finalJeopardy: gameData.finalJeopardy
         };
-        
-        // Generate Round 1 questions
-        this.gameData.round1.categories.forEach(category => {
-            this.gameData.round1.questions[category] = this.selectRandomQuestions(category, 1);
+
+        round1Cats.forEach(cat => {
+            this.gameData.round1.questions[cat] = this.selectRandomQuestions(cat, 1);
         });
-        
-        // Generate Round 2 questions (different from Round 1)
-        this.gameData.round2.categories.forEach(category => {
-            this.gameData.round2.questions[category] = this.selectRandomQuestions(category, 2);
+        round2Cats.forEach(cat => {
+            this.gameData.round2.questions[cat] = this.selectRandomQuestions(cat, 2);
         });
-        
-        console.log('Game data generated:', this.gameData);
     }
     
     selectRandomQuestions(category, round) {
@@ -118,39 +108,26 @@ class JeopardyGame {
             200: 1, 400: 2, 600: 3, 800: 3, 1000: 4,
             1200: 3, 1600: 4, 2000: 5
         };
-        
+
         const selectedQuestions = [];
-        
+
         pointValues.forEach(points => {
             const difficulty = difficultyMap[points];
-            const availableQuestions = questionBank[category]?.filter(q => q.difficulty === difficulty) || [];
-            
-            if (availableQuestions.length > 0) {
-                const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                const selected = availableQuestions[randomIndex];
-                
+            const available = (questionBank[category] || []).filter(q => q.difficulty === difficulty);
+
+            const pool = available.length > 0 ? available : (questionBank[category] || []);
+            if (pool.length > 0) {
+                const selected = pool[Math.floor(Math.random() * pool.length)];
                 selectedQuestions.push({
-                    points: points,
+                    points,
                     question: selected.question,
                     answer: selected.answer,
-                    dailyDouble: false // Will be assigned later
+                    educationalNote: selected.educationalNote || '',
+                    dailyDouble: false
                 });
-            } else {
-                // Fallback to any question from this category
-                const allCategoryQuestions = questionBank[category] || [];
-                if (allCategoryQuestions.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * allCategoryQuestions.length);
-                    const selected = allCategoryQuestions[randomIndex];
-                    selectedQuestions.push({
-                        points: points,
-                        question: selected.question,
-                        answer: selected.answer,
-                        dailyDouble: false
-                    });
-                }
             }
         });
-        
+
         return selectedQuestions;
     }
     
@@ -330,13 +307,23 @@ class JeopardyGame {
     revealAnswer() {
         const answerSection = document.getElementById('answer-section');
         const answerText = document.getElementById('answer-text');
-        
-        // Stop the timer
+        const noteEl = document.getElementById('educational-note');
+
         this.stopTimer();
-        
+
         answerText.textContent = this.currentQuestion.answer;
         answerSection.classList.remove('hidden');
-        
+
+        // Show educational note for facilitator / discussion
+        if (noteEl) {
+            if (this.currentQuestion.educationalNote) {
+                noteEl.textContent = this.currentQuestion.educationalNote;
+                noteEl.parentElement.classList.remove('hidden');
+            } else {
+                noteEl.parentElement.classList.add('hidden');
+            }
+        }
+
         this.showScoringControls();
         document.getElementById('reveal-answer').classList.add('hidden');
     }

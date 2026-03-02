@@ -264,19 +264,25 @@
                 </div>
             </div>
             
-            <div class="text-center">
+            <div class="text-center flex flex-col sm:flex-row gap-4 justify-center">
                 <button id="start-game-btn" class="btn-jeopardy py-4 px-12 rounded-lg text-2xl transform hover:scale-105 transition-all jeopardy-font">
                     START GAME <i class="fas fa-play ml-2"></i>
                 </button>
+                <a href="answer-sheet.html" target="_blank"
+                   class="btn-jeopardy py-4 px-8 rounded-lg text-lg transform hover:scale-105 transition-all jeopardy-font flex items-center justify-center gap-2">
+                    <i class="fas fa-print"></i> FACILITATOR GUIDE
+                </a>
             </div>
-            
+
             <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h3 class="font-bold text-blue-800 mb-2">Game Instructions</h3>
+                <h3 class="font-bold text-blue-800 mb-2">How to Play</h3>
                 <ul class="text-sm text-blue-700 list-disc pl-5 space-y-1">
-                    <li>Select 2 or 3 teams to play</li>
-                    <li>Click on questions to reveal them</li>
-                    <li>Answer questions correctly to earn points</li>
-                    <li>Watch out for Daily Doubles - you can wager!</li>
+                    <li>Enter team names and click <strong>Start Game</strong></li>
+                    <li>Teams take turns picking questions by dollar amount</li>
+                    <li>After each answer is revealed, a <strong>Discussion Point</strong> appears — use it!</li>
+                    <li>Watch out for Daily Doubles — teams can wager their points!</li>
+                    <li>Round 2 introduces deeper topics and higher point values</li>
+                    <li>Use the <strong>Facilitator Guide</strong> to print the full answer sheet before playing</li>
                 </ul>
             </div>
         </div>
@@ -346,8 +352,15 @@
                 
                 <div id="answer-section" class="hidden">
                     <div class="text-center jeopardy-font text-2xl font-bold mb-4 gold-text uppercase">Answer:</div>
-                    <div id="answer-text" class="answer-display jeopardy-font text-3xl text-center text-white p-8 rounded-xl mb-6 white-text-shadow">
+                    <div id="answer-text" class="answer-display jeopardy-font text-3xl text-center text-white p-8 rounded-xl mb-4 white-text-shadow">
                         <!-- Answer will appear here -->
+                    </div>
+                    <!-- Educational note for facilitator discussion -->
+                    <div id="educational-note-wrapper" class="hidden mb-4 p-4 rounded-xl border-2 border-yellow-400" style="background: rgba(0,0,0,0.5);">
+                        <div class="text-yellow-300 text-sm font-bold uppercase tracking-widest mb-2">
+                            <i class="fas fa-lightbulb mr-2"></i>Discussion Point
+                        </div>
+                        <p id="educational-note" class="text-white text-base leading-relaxed"></p>
                     </div>
                 </div>
                 

@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Education Jeopardy – Facilitator Answer Guide</title>
+    <style>
+        /* ── PRINT SETUP ─────────────────────────────────── */
+        @page {
+            size: letter;
+            margin: 0.75in;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+            body { font-size: 10pt; }
+            h1 { font-size: 20pt; }
+            h2 { font-size: 14pt; }
+            h3 { font-size: 12pt; }
+            .category-block { page-break-inside: avoid; }
+        }
+
+        /* ── BASE STYLES ─────────────────────────────────── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #1a1a1a;
+            background: #f5f5f0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ──────────────────────────────────────── */
+        .cover {
+            background: #060CE9;
+            color: #FFCC00;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .cover h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .cover .subtitle {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .cover .audience-tag {
+            display: inline-block;
+            background: #FFCC00;
+            color: #060CE9;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 999px;
+            margin-top: 0.75rem;
+        }
+
+        /* ── PRINT BUTTON ────────────────────────────────── */
+        .print-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            background: #060CE9;
+            color: #FFCC00;
+            border: 3px solid #FFCC00;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.75rem 2.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .print-btn:hover {
+            background: #FFCC00;
+            color: #060CE9;
+        }
+
+        /* ── INTRO BOX ───────────────────────────────────── */
+        .intro-box {
+            background: #fff;
+            border: 2px solid #060CE9;
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .intro-box h2 {
+            color: #060CE9;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .intro-box ul {
+            padding-left: 1.5rem;
+        }
+        .intro-box li {
+            margin-bottom: 0.5rem;
+        }
+        .tip-box {
+            background: #fffbe6;
+            border-left: 5px solid #FFCC00;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+        }
+        .tip-box strong { color: #7a5900; }
+
+        /* ── CRISIS BOX ──────────────────────────────────── */
+        .crisis-box {
+            background: #fff0f0;
+            border: 2px solid #cc0000;
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .crisis-box h3 { color: #cc0000; margin-bottom: 0.6rem; font-size: 1.1rem; }
+        .crisis-box p, .crisis-box li { font-size: 0.95rem; }
+        .crisis-box ul { padding-left: 1.5rem; }
+
+        /* ── ROUND DIVIDERS ──────────────────────────────── */
+        .round-header {
+            background: linear-gradient(135deg, #0000A0, #060CE9);
+            color: #FFCC00;
+            text-align: center;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 2.5rem 0 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .round-header .round-desc {
+            font-size: 0.9rem;
+            color: #ffffffcc;
+            font-weight: normal;
+            letter-spacing: 0.02em;
+            margin-top: 0.25rem;
+        }
+
+        /* ── CATEGORY BLOCKS ─────────────────────────────── */
+        .category-block {
+            background: #ffffff;
+            border: 2px solid #cccccc;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .category-header {
+            background: #060CE9;
+            color: #FFCC00;
+            padding: 0.75rem 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .category-header .cat-type {
+            font-size: 0.75rem;
+            color: #ffffffaa;
+            font-weight: normal;
+            letter-spacing: 0.08em;
+        }
+
+        /* ── QUESTION ROWS ───────────────────────────────── */
+        .question-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 1.25rem;
+        }
+        .question-item:last-child { border-bottom: none; }
+        .question-item:nth-child(even) { background: #f9f9f9; }
+
+        .points-badge {
+            display: inline-block;
+            background: #060CE9;
+            color: #FFCC00;
+            font-weight: 900;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            font-family: Arial, sans-serif;
+        }
+        .dd-badge {
+            display: inline-block;
+            background: #FFCC00;
+            color: #060CE9;
+            font-weight: 900;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.4rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .q-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #666;
+            margin-bottom: 0.2rem;
+        }
+        .q-text {
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            color: #1a1a1a;
+        }
+        .a-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #007700;
+            margin-bottom: 0.2rem;
+        }
+        .a-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #006600;
+            margin-bottom: 0.6rem;
+        }
+        .note-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #7a5900;
+            margin-bottom: 0.2rem;
+        }
+        .note-text {
+            font-size: 0.88rem;
+            color: #4a3800;
+            background: #fffbe6;
+            border-left: 4px solid #FFCC00;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+            line-height: 1.5;
+        }
+
+        /* ── FINAL JEOPARDY ──────────────────────────────── */
+        .final-j-block {
+            background: #1a1a1a;
+            color: #FFCC00;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .final-j-block h2 {
+            font-size: 1.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .final-j-block .fj-category {
+            font-size: 1rem;
+            color: #ffffffaa;
+            margin-bottom: 1.5rem;
+        }
+        .final-j-block .fj-question {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .final-j-block .fj-answer {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .final-j-block .fj-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #cccccc;
+            background: rgba(255,255,255,0.08);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        /* ── RESOURCES ───────────────────────────────────── */
+        .resources-section {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .resource-card {
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .resource-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #060CE9;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .resource-card p, .resource-card li {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .resource-card ul { padding-left: 1.25rem; }
+        .resource-card li { margin-bottom: 0.3rem; }
+
+        /* ── DISCUSSION GUIDE ────────────────────────────── */
+        .discussion-section {
+            background: #fff;
+            border: 2px solid #060CE9;
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .discussion-section h2 {
+            color: #060CE9;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .discussion-group { margin-bottom: 1.2rem; }
+        .discussion-group h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.4rem;
+            font-style: italic;
+        }
+        .discussion-group ul {
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .discussion-group li { margin-bottom: 0.3rem; }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 2px solid #ccc;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">
+    🖨️ Print This Guide
+</button>
+
+<!-- ── COVER ──────────────────────────────────────────────────────────── -->
+<div class="cover">
+    <h1>Drug Education Jeopardy!</h1>
+    <div class="subtitle">Complete Facilitator Answer Guide &amp; Discussion Resource</div>
+    <div class="audience-tag">Designed for Boys Ages 13–19 | Group Home Setting</div>
+</div>
+
+<!-- ── FACILITATOR INTRO ─────────────────────────────────────────────── -->
+<div class="intro-box">
+    <h2>Facilitator Guide: Before You Begin</h2>
+    <p style="margin-bottom:1rem;">
+        This game is designed to <strong>build real, practical knowledge</strong> about drugs, addiction, and staying safe — not to shame or lecture. The young men in this room may have personal or family experience with substance use. Approach every topic with respect and curiosity.
+    </p>
+    <ul>
+        <li><strong>Two rounds of play.</strong> Round 1 covers foundational topics (alcohol, drug types, health effects, myths, prevention, recognizing signs). Round 2 goes deeper (fentanyl crisis, addiction science, treatment, legal consequences, family impact, real-life decision making).</li>
+        <li><strong>After each answer is revealed</strong>, a <em>Discussion Point</em> appears on screen. Use it to spark a brief conversation before moving to the next question. These moments are where the real learning happens.</li>
+        <li><strong>Not a quiz — a conversation starter.</strong> If a team gets a question wrong, don't move on too fast. Ask the group what they thought the answer was and why. Wrong answers reveal what people actually believe.</li>
+        <li><strong>Personal disclosures.</strong> Some questions may prompt personal sharing about family members, past use, or trauma. Be ready to hold space for that — and know when to refer to a counselor.</li>
+        <li><strong>Daily Doubles and Final Jeopardy</strong> add drama and engagement. Let teams celebrate and compete — the fun is part of what makes information stick.</li>
+    </ul>
+
+    <div class="tip-box">
+        <strong>Trauma-Informed Tip:</strong> Some participants may become quiet or uncomfortable with questions about family addiction, overdose, or legal consequences. Give space. You might say: "You don't have to answer this one personally — let's just talk about what the facts tell us." Never force participation.
+    </div>
+    <div class="tip-box">
+        <strong>Before playing, post these in the room:</strong>
+        National Helpline: <strong>1-800-662-4357 (SAMHSA)</strong> &nbsp;|&nbsp; Crisis Line: <strong>988</strong> &nbsp;|&nbsp; Crisis Text: <strong>Text HOME to 741741</strong>
+    </div>
+</div>
+
+<!-- ── CRISIS RESOURCES ──────────────────────────────────────────────── -->
+<div class="crisis-box">
+    <h3>⚠️ Crisis Resources — Keep These Visible During the Game</h3>
+    <ul>
+        <li><strong>SAMHSA National Helpline:</strong> 1-800-662-4357 — Free, confidential, 24/7. Treatment referrals.</li>
+        <li><strong>988 Suicide &amp; Crisis Lifeline:</strong> Call or text 988 — Mental health AND substance crisis support.</li>
+        <li><strong>Crisis Text Line:</strong> Text HOME to 741741 — For anyone in crisis who prefers text.</li>
+        <li><strong>FindTreatment.gov:</strong> Search for local treatment by zip code. Many programs are free or Medicaid-covered.</li>
+        <li><strong>Naloxone (Narcan):</strong> Available without prescription at most pharmacies. Reverses opioid overdose.</li>
+    </ul>
+</div>
+
+<!-- ── DISCUSSION GUIDE ──────────────────────────────────────────────── -->
+<div class="discussion-section">
+    <h2>Discussion Starter Questions (Use Between Rounds or After Specific Topics)</h2>
+
+    <div class="discussion-group">
+        <h3>On Peer Pressure &amp; Decision Making:</h3>
+        <ul>
+            <li>"What's the hardest part about saying no when someone you respect is offering you something?"</li>
+            <li>"If you knew for sure a pill had fentanyl in it, would you take it? What if you weren't sure?"</li>
+            <li>"What would it look like to be the person in a group who doesn't use — and still be respected?"</li>
+        </ul>
+    </div>
+
+    <div class="discussion-group">
+        <h3>On Addiction &amp; Family:</h3>
+        <ul>
+            <li>"We learned addiction is a brain disease. How does knowing that change how you feel about someone in your family who uses?"</li>
+            <li>"What does it feel like to grow up in a house where a parent or family member uses drugs or alcohol?"</li>
+            <li>"If you have family history of addiction, does that change anything about how you think about your own choices?"</li>
+        </ul>
+    </div>
+
+    <div class="discussion-group">
+        <h3>On Help &amp; Recovery:</h3>
+        <ul>
+            <li>"What would it take for you to ask for help if you were struggling with something like this?"</li>
+            <li>"Who is one person in your life you could actually call if you were in trouble?"</li>
+            <li>"What does 'getting better' look like to you? What would your life look like if it was going really well?"</li>
+        </ul>
+    </div>
+
+    <div class="discussion-group">
+        <h3>On Safety (Narcan / Overdose Response):</h3>
+        <ul>
+            <li>"If you saw someone overdosing and you were scared of getting in trouble — what would help you make the call to 911 anyway?"</li>
+            <li>"Did you know you could get Narcan free at a pharmacy without a prescription? Would you carry it?"</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!--  ROUND 1 QUESTIONS                                                       -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<div class="round-header">
+    Round 1 — Foundational Knowledge
+    <div class="round-desc">Point values: $200 · $400 · $600 · $800 · $1,000</div>
+</div>
+
+<!-- ── CATEGORY: Alcohol: The Real Deal ─────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Alcohol: The Real Deal
+        <span class="cat-type">Round 1 · Category 1</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">The legal drinking age in the United States.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 21?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">The US set 21 because the brain is still developing through your early 20s. Alcohol hits harder and causes more lasting damage the younger you are.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This organ in your body has to process almost all the alcohol you drink.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the liver?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Your liver can only handle about one drink per hour. Drinking more doesn't speed up sobering — only time does. Coffee and cold showers don't work.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Alcohol is classified as this type of drug because it SLOWS your brain and nervous system down.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is a depressant?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Even though alcohol can feel like it loosens you up at first, it's slowing your reaction time, judgment, and coordination. That's why drunk people can't drive safely.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Drinking 4–5 or more drinks in about 2 hours is called this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is binge drinking?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">About 1 in 6 adults binge drinks regularly. Binge drinking is responsible for more than half of all alcohol-related deaths.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Alcohol use before age 15 increases the risk of later developing alcohol addiction by this much compared to those who wait until 21.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 4 times greater (400%)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">This is biological, not just about 'bad choices.' The younger a brain is exposed to alcohol, the more it rewires toward addiction. Waiting even a few years makes a huge difference.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Drugs: Know What You're Dealing With ───────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Drugs: Know What You're Dealing With
+        <span class="cat-type">Round 1 · Category 2</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Drugs like cocaine and meth that speed up your heart rate and make you feel wired and energetic are called this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What are stimulants?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Stimulants raise your heart rate and blood pressure dangerously. Even first-time users have died from heart attacks — including young, healthy people.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: A prescription pill from a friend is safer than a street drug because it came from a pharmacy.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? Many fake prescription pills are made with fentanyl.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">The DEA reports that 6 out of 10 fake prescription pills contain a lethal dose of fentanyl. There is NO way to tell by looking at them.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This drug is 50 to 100 times stronger than morphine and is now found mixed into many street drugs — often without the buyer knowing.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is fentanyl?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">A lethal dose of fentanyl is 2 milligrams — smaller than a few grains of salt. It's been found in fake pills, cocaine, meth, and even marijuana.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This dangerous combination called a 'speedball' — mixing a stimulant and an opioid — has killed multiple celebrities.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is cocaine and heroin (or meth and heroin)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Stimulants mask the warning signs of opioid overdose. You don't feel as drowsy, so you take more. When the stimulant wears off first, you overdose from the opioid still in your system.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This percentage of cocaine sold on the street now contains fentanyl — meaning a cocaine user can overdose on opioids they didn't know they were taking.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is about 70%?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Many cocaine users don't carry Narcan because they don't think they're using opioids. But with fentanyl contamination this high, Narcan saves cocaine users' lives too.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: What Drugs Actually Do to Your Body ────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        What Drugs Actually Do to Your Body
+        <span class="cat-type">Round 1 · Category 3</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This life-saving medication can reverse an opioid overdose by blocking opioids from receptors in the brain.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is naloxone (Narcan)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Narcan is available without a prescription in most states. It has no effect if opioids aren't present, so it's safe to give to anyone you suspect is overdosing. It can save a life in minutes.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Opioids kill by causing this — where breathing slows and stops because the brain 'forgets' to breathe.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is respiratory depression (stopped breathing)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">This is why overdosing people turn blue and can't be woken up. Narcan reverses this in minutes. Calling 911 and giving Narcan are the two most important things you can do.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This condition happens when your body gets so used to a drug that you need more and more to get the same effect.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is tolerance?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Tolerance is one of the earliest signs of developing dependence. It's your body physically adapting to the drug — a danger sign, not a badge of honor.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Meth use causes this vital muscle — your body's pump — to age 10 years faster than normal, increasing heart attack risk enormously.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the heart?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Meth forces your heart to beat faster and harder for extended periods. Even young meth users have had fatal heart attacks. The damage is often permanent.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Repeated opioid overdoses that cut off oxygen to the brain — even ones survived — cause this type of permanent damage.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is brain damage (hypoxic brain injury)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Every non-fatal overdose is a near-death event that can cause permanent cognitive damage. Some survivors have lasting memory, personality, or motor function problems.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Myths vs. Facts ────────────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Myths vs. Facts: What's Real
+        <span class="cat-type">Round 1 · Category 4</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: Addiction is a character flaw — people become addicted because they're weak or have no willpower.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? Addiction is a chronic brain disease.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">The American Medical Association, APA, and WHO all classify addiction as a medical disorder. Judging addicts as 'weak' prevents people from getting life-saving treatment.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: You can tell if a pill or powder has fentanyl in it by looking at it, tasting it, or smelling it.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? You cannot detect fentanyl without a test strip.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Fentanyl is odorless, colorless, and tasteless. Even drug dealers sometimes don't know their supply contains it. The only way to test is with fentanyl test strips.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: Most teens your age are using drugs or drinking regularly.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? Most teens don't use drugs.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Only about 6.5% of high school seniors use illicit drugs regularly. The majority of teens choose not to use — even if it doesn't feel that way in some settings.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: Using drugs once or twice is safe — you can't get addicted from just trying something.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? One use can be fatal with fentanyl.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">One pill can kill — this isn't exaggeration. Fentanyl has killed people on their very first use. First use is also when many people begin the path to addiction.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">TRUE OR FALSE: Teens in the foster care and group home system have the same rates of substance use as the general teen population.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is FALSE? System-involved youth have significantly higher rates.</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Research shows youth in the foster care system are 2–3 times more likely to develop substance use problems, largely due to trauma, instability, and lack of supportive adults. This is why education matters SO much.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Prevention & Making Good Choices ────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Prevention &amp; Making Good Choices
+        <span class="cat-type">Round 1 · Category 5</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Research shows this is the single most important protective factor against teen drug use.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is having a strong connection to family or a caring adult?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Teens who have even ONE consistent, caring adult in their life have dramatically lower rates of drug use. Connection protects. Every adult in this room can be that person for someone.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">These skills — like exercising, talking to someone, journaling, or breathing exercises — help manage stress without substances.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What are healthy coping skills?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Drugs are often used to cope with stress, boredom, trauma, or pain. Building healthy alternatives for managing hard feelings is one of the most important life skills you can develop.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Participating in these activities after school or in the evenings reduces drug use risk by about 50%.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What are sports, clubs, jobs, or other structured activities?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Idle time and boredom are significant risk factors. Activities provide purpose, connection, and positive outlet for stress — the same things drugs promise but can't deliver.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Teens with undiagnosed or untreated depression, anxiety, ADHD, or trauma are this many times more likely to develop substance use problems.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is twice as likely (2×)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Many people self-medicate real pain with drugs. Treating the underlying mental health issue dramatically reduces substance use. If you're struggling, telling a counselor or doctor matters.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Knowing that first drug use before this age dramatically increases lifetime addiction risk is an important reason why waiting matters.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is age 15 (using before 15 quadruples risk)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">This isn't about being 'good.' The brain is physically more vulnerable when it's still developing. Waiting even 2–3 more years significantly reduces your biological risk of addiction.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Recognizing Signs & What To Do ─────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Recognizing Signs &amp; What To Do
+        <span class="cat-type">Round 1 · Category 6</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">These are the signs of an opioid overdose — what you should look for if you think someone is overdosing.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What are: slow/stopped breathing, blue lips, unresponsive, pinpoint pupils?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">You only have minutes. If someone is breathing fewer than once every 5 seconds or not at all — give Narcan immediately and call 911. Stay with them.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This is the FIRST thing you should do if you think someone near you is overdosing.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is call 911 (and give Narcan if available)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Don't wait to see if they get better. Every minute without oxygen causes brain damage. Most states have Good Samaritan laws — you won't get in trouble for calling for help.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This position — placing an unconscious person on their side — can save their life by preventing them from choking on vomit.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the recovery position?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Unconscious intoxicated people frequently vomit and can choke on it. Placing them on their side takes 10 seconds and can be the difference between life and death.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Many states have this law that protects people from prosecution when they call 911 for an overdose — making it safer to get help.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the Good Samaritan law (or Medical Amnesty law)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Fear of getting in trouble is one reason people don't call 911 during an overdose. Good Samaritan laws exist specifically to remove this barrier.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This national helpline — 988 or 1-800-662-HELP — provides 24/7 free and confidential support for anyone struggling with mental health or substance use.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the SAMHSA National Helpline or 988 Suicide and Crisis Lifeline?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">You don't have to be in a crisis to call. You can call for advice, to talk, or to help a friend. It's free, private, and staffed by real people who care.</div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!--  ROUND 2 QUESTIONS                                                       -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<div class="round-header page-break">
+    Round 2 — Deeper Knowledge
+    <div class="round-desc">Point values: $400 · $800 · $1,200 · $1,600 · $2,000</div>
+</div>
+
+<!-- ── CATEGORY: The Fentanyl Crisis ────────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        The Fentanyl Crisis
+        <span class="cat-type">Round 2 · Category 1</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">A lethal dose of fentanyl is about this size — smaller than a few grains of salt or the head on a coin.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 2 milligrams (about the size of Lincoln's head on a penny)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">You cannot see 2 milligrams. You cannot smell or taste it. This is why 'just a little' can kill. There is no safe amount when you can't detect it.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This DEA finding about counterfeit pills shows how dangerous the current drug supply is.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is that 6 in 10 (60%) of seized fake pills contain a lethal dose of fentanyl?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">You're essentially playing Russian Roulette with 3–4 chambers loaded. Most people who've taken a fake pill and survived did so by luck — not because they knew what they were doing.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This reason explains why people who have just been released from jail, prison, or a treatment program are at the HIGHEST risk of fentanyl overdose death.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is that their tolerance has dropped during abstinence, so they use their old 'normal' amount and overdose?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">The first week after release from incarceration has 12 times the overdose risk of the general population. Tolerance resets during abstinence — the dose that used to be 'normal' becomes lethal.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">When giving Narcan to someone overdosing on fentanyl (vs. regular heroin), this is different about how many doses you may need.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is you may need 2–3 or more doses, given every 2–3 minutes?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Fentanyl's strength means standard naloxone doses are often insufficient. Always give more if the person isn't responding, and CALL 911 — Narcan wears off before fentanyl does.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This fact about how fentanyl is distributed in counterfeit pills explains why one pill from the same batch can be safe while another is lethal.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is that fentanyl isn't evenly mixed — 'hot spots' of concentrated fentanyl exist in the same pill or powder?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Two identical-looking pills from the same batch can have wildly different fentanyl content. There's no 'safe' test dose — the safer choice is testing the whole supply.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Understanding Addiction ────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Understanding Addiction
+        <span class="cat-type">Round 2 · Category 2</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This natural brain chemical — released when you eat good food, achieve a goal, or connect with someone — is the same one that drugs flood the brain with.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is dopamine?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Drugs don't create pleasure from nothing — they steal from your brain's own reward system. Over time, natural pleasures stop producing enough dopamine compared to the drug.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Addiction is described as compulsive drug use DESPITE this — meaning even when the person knows it's hurting them and wants to stop.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is negative consequences (losing jobs, relationships, health, freedom)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">The compulsive nature of addiction distinguishes it from habit or choice. Someone in addiction often hates what they're doing and desperately wants to stop, but their brain chemistry makes 'just stopping' extremely difficult.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">These three factors — genetic risk, environment (trauma, stress, peer influence), and age of first use — are the major predictors of who develops addiction.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What are genetics, environment, and age of first use?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">None of these alone causes addiction. But together, and especially with early use, the risk dramatically increases. None of this is destiny — understanding risk factors is how you make informed choices.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This brain region — responsible for planning, judgment, and self-control — is still developing until about age 25 and is particularly damaged by drug use during teen years.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the prefrontal cortex?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Your prefrontal cortex is literally under construction until age 25. Drugs damage this region more permanently during development than in adults — meaning poorer judgment lasts longer.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This bidirectional relationship — where trauma increases addiction risk AND addiction increases trauma exposure — creates a cycle that requires both to be treated simultaneously.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the trauma-addiction cycle?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Treating addiction without addressing trauma often fails because the person returns to substances to cope with the trauma symptoms. Integrated trauma-informed addiction treatment has much better outcomes.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Treatment, Recovery & Getting Help ──────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Treatment, Recovery &amp; Getting Help
+        <span class="cat-type">Round 2 · Category 3</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This national phone number — available 24/7, free, and confidential — connects you to substance use and mental health support.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 988 (Suicide and Crisis Lifeline) or 1-800-662-HELP (SAMHSA)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">These lines aren't just for emergencies — you can call to ask for advice, information, or help for a friend. No judgment, no cost, real people who care.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This approach to treatment — meeting people where they are, focusing on reducing harm even if they aren't ready to quit — is called this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is harm reduction?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Harm reduction keeps people alive until they're ready for more. You can't recover if you're dead. It's not giving up on someone — it's keeping the door to recovery open.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This evidence-based therapy — teaching people to identify and change thoughts that lead to drug use, while building skills to cope with triggers — is the most widely used in addiction treatment.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is Cognitive Behavioral Therapy (CBT)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">CBT teaches you how your thoughts affect your feelings and actions. Noticing a thought pattern BEFORE it leads to using is a skill you can learn — and it works.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This important fact about relapse — which happens to 40–60% of people in recovery — reframes what many see as 'failure.'</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is that relapse rates for addiction are similar to rates for diabetes and asthma — it signals a need to adjust the plan, not give up?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Relapse is painful, but it is not the end. Most people who achieve lasting recovery have relapsed multiple times. Every attempt at recovery matters and builds toward the next one.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">SAMHSA defines recovery as this process — describing not just sobriety but a whole-life transformation.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 'a process of change through which individuals improve their health and wellness, live a self-directed life, and strive to reach their full potential'?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Recovery isn't just 'not using.' It's building a life worth living — health, housing, purpose, connection. The four dimensions of SAMHSA's recovery model: Health, Home, Purpose, Community.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Legal Consequences ─────────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Legal Consequences: Your Future Matters
+        <span class="cat-type">Round 2 · Category 4</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This type of criminal record — created when someone is convicted of a crime — can follow a person for life and affect jobs, housing, college, and custody of children.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is a criminal record or conviction?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">A conviction doesn't end when you're released. The invisible sentence — discrimination in hiring, housing, and education — can last decades.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">A drug conviction can make you ineligible for this federal financial assistance — making college much harder or impossible to afford.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is federal student aid (FAFSA)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">A drug conviction can block you from Pell Grants and federal loans for years. Your education and future are at stake — and most teens don't know this until it's too late.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Selling drugs within this distance from a school, park, or playground typically DOUBLES the criminal penalties.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 1,000 feet?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">In many urban areas, you're within 1,000 feet of a school almost everywhere. Enhanced penalty zones affect sentencing dramatically — and most young people don't know this.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This legal protection — available in most states — protects people from drug prosecution when they call 911 for an overdose.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is the Good Samaritan law (or Medical Amnesty law)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Good Samaritan laws vary by state. Most protect the caller AND the person overdosing from arrest for simple possession. Knowing your state's law could literally save a life.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This legal concept — where drug charges can be brought against users who share drugs that lead to a friend's overdose death — is increasingly used to prosecute young people.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is drug-induced homicide laws?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Over 25 states have used these laws to charge people with manslaughter or murder when the drugs they gave to a friend caused death. This includes cases between close friends.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Family Impact ─────────────────────────────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Family Impact &amp; Growing Up Around Addiction
+        <span class="cat-type">Round 2 · Category 5</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">About this fraction of American children — 1 in this number — lives with at least one parent with a substance use disorder.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 1 in 8 (about 12% or nearly 9 million children)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">You are not alone. Millions of young people are in exactly the situation you may have experienced. Growing up around addiction is not your fault, and it doesn't determine your future.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Children of parents with alcohol use disorder have this higher risk of developing addiction themselves — due to both genes AND environment.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 2–9 times higher risk?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">This isn't fate. Knowing you have higher biological risk is powerful information — it means you have even stronger reasons to be cautious, and means you deserve extra support.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">This term describes the false role some children in addicted households take on — acting as the parent, caretaker, or emotional support for a parent.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is parentification (or role reversal)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Taking care of a parent who should be taking care of you is deeply painful and confusing. It can leave lasting effects on your ability to trust, set boundaries, and feel safe. This was not your job.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">More than this many children lost a parent to drug overdose between 2011 and 2021 — a traumatic loss with unique grief challenges.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 321,000 children?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Overdose death of a parent is a devastating, stigmatized loss. Grief after addiction-related death is often complicated by anger, shame, and lack of community support. This pain deserves acknowledgment and care.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Children who experienced abuse have this fold higher likelihood of developing their own substance use disorders compared to children without abuse history.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is 4.3 times higher risk?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Abuse and addiction are deeply connected because trauma changes how the brain handles stress, pleasure, and risk. This is NOT the child's fault — and it's why trauma treatment is part of addiction treatment.</div>
+    </div>
+</div>
+
+<!-- ── CATEGORY: Decision Making & Real-Life Scenarios ──────────────── -->
+<div class="category-block">
+    <div class="category-header">
+        Decision Making &amp; Real-Life Scenarios
+        <span class="cat-type">Round 2 · Category 6</span>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$400</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Your roommate says 'try this, it's just a pill, it'll chill you out.' The safest response is this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is saying no — any pill from an unknown source could contain fentanyl?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">6 in 10 counterfeit pills contain a lethal dose of fentanyl. 'Just a pill' has killed thousands of teens. Your roommate may not know what's actually in it — and their life may be at risk too.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$800</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">At a party, you notice your friend is slumped over, not responding, and their lips look bluish. The FIRST thing to do is this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is call 911 immediately (and give Narcan if available)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Blue lips mean oxygen deprivation. Every minute without oxygen causes brain damage. Don't waste time trying to wake them up first — call 911 while you or someone else gives Narcan.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,200</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">You've been clean for six months and feeling really confident — almost too confident. Recovery experts call this dangerous state of overconfidence this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is complacency (or pink cloud syndrome)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Feeling great in early recovery is wonderful — but complacency is one of the top triggers of relapse. Staying connected to support matters MOST when you feel like you don't need it.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$1,600</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Someone asks you to hold something for them or be a lookout while they deal. The legal consequence you need to understand is this.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is that you can be charged with the SAME drug crime as the dealer — including trafficking and distribution?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Drug conspiracy laws are broad. 'Holding' drugs for someone makes you a possessor. Being a lookout makes you part of a conspiracy. This isn't worth the loyalty — to anyone.</div>
+    </div>
+
+    <div class="question-item">
+        <div><span class="points-badge">$2,000</span></div>
+        <div class="q-label">Question:</div>
+        <div class="q-text">Research on social influence shows that one of the MOST effective ways to help a peer choose not to use drugs is this — rather than direct advice-giving.</div>
+        <div class="a-label">Answer:</div>
+        <div class="a-text">What is modeling recovery and healthy behavior yourself (being a living example)?</div>
+        <div class="note-label">Discussion Point:</div>
+        <div class="note-text">Seeing someone their own age making it without substances is one of the most powerful influences on young people's choices. Your recovery, your choices, and your presence can change someone else's life simply by showing it's possible.</div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!--  FINAL JEOPARDY                                                          -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<div class="final-j-block page-break">
+    <h2>🏆 Final Jeopardy!</h2>
+    <div class="fj-category">Category: Recovery &amp; Hope</div>
+    <div class="fj-question">
+        This national organization, founded in 1935, has helped millions of people recover from alcoholism using a 12-step program and the principle that people with addiction can help other people with addiction achieve sobriety. It operates in over 180 countries with more than 2 million members and has no dues or fees — only a desire to stop drinking.
+    </div>
+    <div class="fj-answer">What is Alcoholics Anonymous (AA)?</div>
+    <div class="fj-note">
+        <strong>Facilitator Note:</strong> Use Final Jeopardy as a moment to talk about hope. Recovery is possible — millions of people have done it. The same peer support that makes AA powerful is available in many forms, including NA, SMART Recovery, peer mentors, and recovery coaches. Ask the group: "What would your life look like in 5 years if things went really well?"
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!--  RESOURCES & REFERENCES                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<div style="margin-top: 2rem; margin-bottom: 1rem;">
+    <div class="round-header" style="margin-top: 0;">Resources &amp; References</div>
+</div>
+
+<div class="resources-section">
+    <div class="resource-card">
+        <h3>Crisis &amp; Helplines</h3>
+        <ul>
+            <li><strong>988 Lifeline:</strong> Call or text 988</li>
+            <li><strong>SAMHSA Helpline:</strong> 1-800-662-4357</li>
+            <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+            <li><strong>Poison Control:</strong> 1-800-222-1222</li>
+        </ul>
+    </div>
+    <div class="resource-card">
+        <h3>Find Treatment</h3>
+        <ul>
+            <li><strong>FindTreatment.gov</strong> — Search by zip code</li>
+            <li><strong>AA:</strong> aa.org</li>
+            <li><strong>NA:</strong> na.org</li>
+            <li><strong>SMART Recovery:</strong> smartrecovery.org</li>
+        </ul>
+    </div>
+    <div class="resource-card">
+        <h3>Narcan / Naloxone</h3>
+        <ul>
+            <li>Available without a prescription at most pharmacies</li>
+            <li>Often FREE with Medicaid/CHIP coverage</li>
+            <li>Free through many health departments and harm reduction orgs</li>
+            <li><strong>Never Alone / Next Distro</strong> — free mail-order Narcan in many states</li>
+        </ul>
+    </div>
+    <div class="resource-card">
+        <h3>Educational Resources</h3>
+        <ul>
+            <li><strong>NIDA for Teens:</strong> teens.drugabuse.gov</li>
+            <li><strong>DEA Museum:</strong> deamuseum.org</li>
+            <li><strong>Above the Influence:</strong> abovetheinfluence.com</li>
+            <li><strong>CDC Drug Overdose:</strong> cdc.gov/drugoverdose</li>
+        </ul>
+    </div>
+    <div class="resource-card">
+        <h3>For Foster/Group Home Youth</h3>
+        <ul>
+            <li>Youth in foster care have Medicaid — it covers mental health AND substance use treatment</li>
+            <li>In most states, youth 12+ can consent to their own SUD treatment</li>
+            <li><strong>Foster Care Alumni of America:</strong> fostercarealumni.org</li>
+            <li>Ask your caseworker or counselor about behavioral health referrals</li>
+        </ul>
+    </div>
+    <div class="resource-card">
+        <h3>Fentanyl Test Strips</h3>
+        <ul>
+            <li>Available at most pharmacies (BTNX brand)</li>
+            <li>Often FREE from local harm reduction organizations</li>
+            <li>Legal in most US states (laws vary — check your state)</li>
+            <li><strong>NEXT Distro:</strong> nextdistro.org — free mail-order strips in many states</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    Drug Education Jeopardy — Facilitator Answer Guide &nbsp;|&nbsp;
+    Designed for Boys Ages 13–19 in Group Home Settings &nbsp;|&nbsp;
+    Sources: SAMHSA, NIDA, DEA, CDC, UNODC
+</footer>
+
+</body>
+</html>

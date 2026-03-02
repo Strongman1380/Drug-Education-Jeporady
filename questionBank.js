@@ -1,380 +1,423 @@
-// Comprehensive Question Bank with Difficulty Ratings
-// Each question has a difficulty rating: 1 (Easy), 2 (Medium), 3 (Hard), 4 (Very Hard), 5 (Expert)
+// Drug Education Jeopardy - Comprehensive Question Bank
+// Audience: Boys ages 13-19 in a group home setting
+// Each question: difficulty 1-5, question, answer, educationalNote (for facilitator answer sheet)
+//
+// ROUND 1 CATEGORIES (indices 0-5) — Foundational Knowledge
+// ROUND 2 CATEGORIES (indices 6-11) — Deeper / Applied Knowledge
 
 const questionBank = {
-    "Alcohol Facts": [
-        // EASY (200 points)
-        { difficulty: 1, question: "This is the legal drinking age in the United States.", answer: "What is 21?" },
-        { difficulty: 1, question: "This percentage represents how many children live with at least one parent with substance use disorder.", answer: "What is 12.3% (or 1 in 8)?" },
-        { difficulty: 1, question: "This organ processes about 90% of consumed alcohol.", answer: "What is the liver?" },
-        { difficulty: 1, question: "This is the recommended number of drinks per week for moderate drinking.", answer: "What is up to 7 for women and 14 for men?" },
-        { difficulty: 1, question: "This term describes someone who assists another person in maintaining destructive behavior.", answer: "What is an enabler?" },
-        
-        // MEDIUM (400 points)
-        { difficulty: 2, question: "This blood alcohol concentration is considered legally intoxicated in most states.", answer: "What is 0.08%?" },
-        { difficulty: 2, question: "This percentage of children under 18 are exposed to alcohol abuse within their families.", answer: "What is approximately 8.3 million children?" },
-        { difficulty: 2, question: "Children of alcoholic parents show this multiple increase in rates of mood disorders by young adulthood.", answer: "What is nearly double (2x)?" },
-        { difficulty: 2, question: "This federal agency oversees substance abuse prevention and treatment services.", answer: "What is SAMHSA (Substance Abuse and Mental Health Services Administration)?" },
-        { difficulty: 2, question: "This is approximately how long it takes the body to process one standard drink.", answer: "What is one hour?" },
-        
-        // HARD (600-800 points)
-        { difficulty: 3, question: "This term describes drinking 5 or more drinks in a row for men, or 4 or more for women.", answer: "What is binge drinking?" },
-        { difficulty: 3, question: "Children of alcoholic parents face this fold-increase in risk of developing alcoholism themselves.", answer: "What is 2-9 times higher?" },
-        { difficulty: 3, question: "This condition affects children exposed to alcohol prenatally, causing lifelong cognitive impairments.", answer: "What is Fetal Alcohol Spectrum Disorder (FASD)?" },
-        { difficulty: 3, question: "Sons of alcoholic fathers are at this fold-risk compared to male offspring of non-alcoholic fathers.", answer: "What is four-fold (4x) risk?" },
-        
-        // VERY HARD (1000-1200 points)
-        { difficulty: 4, question: "This metabolite is formed when cocaine and alcohol are combined, increasing cardiotoxicity.", answer: "What is cocaethylene?" },
-        { difficulty: 4, question: "Adult children of addicts frequently struggle with these psychological patterns including self-judgment and people-pleasing.", answer: "What are maladaptive coping behaviors (or ACOA characteristics)?" },
-        { difficulty: 4, question: "This percentage increase in hospitalization time is seen in children of substance-abusing parents.", answer: "What is 29% longer average stays?" },
-        
-        // EXPERT (1600-2000 points)
-        { difficulty: 5, question: "Children of substance-abusing parents are this percentage more likely to require hospitalization.", answer: "What is 24% more likely?" },
-        { difficulty: 5, question: "This term describes when children assume adult responsibilities prematurely in addicted households.", answer: "What is parentification (or role reversal)?" }
+
+    // ─── ROUND 1 CATEGORY 1 ─────────────────────────────────────────────────
+    "Alcohol: The Real Deal": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "The legal drinking age in the United States.", answer: "What is 21?", educationalNote: "The US set 21 because the brain is still developing through your early 20s. Alcohol hits harder and causes more lasting damage the younger you are." },
+        { difficulty: 1, question: "This organ in your body has to process almost all the alcohol you drink.", answer: "What is the liver?", educationalNote: "Your liver can only handle about one drink per hour. Drinking more doesn't speed up sobering — only time does. Coffee and cold showers don't work." },
+        { difficulty: 1, question: "Alcohol is classified as this type of drug because it SLOWS your brain and nervous system down.", answer: "What is a depressant?", educationalNote: "Even though alcohol can feel like it loosens you up at first, it's actually slowing your reaction time, judgment, and coordination. That's why drunk people can't drive safely." },
+        { difficulty: 1, question: "This number is the legal blood alcohol limit for drivers in most states.", answer: "What is 0.08%?", educationalNote: "At just 0.05% BAC — less than the legal limit — your crash risk already doubles. Many countries use 0.05% as their limit." },
+        { difficulty: 1, question: "Drinking 4-5 or more drinks in about 2 hours is called this.", answer: "What is binge drinking?", educationalNote: "About 1 in 6 adults binge drinks regularly. Binge drinking is responsible for more than half of all alcohol-related deaths." },
+        { difficulty: 1, question: "This is true or false: Coffee and a cold shower will sober you up faster.", answer: "What is FALSE? Only time sobers you up.", educationalNote: "Coffee makes a sleepy drunk person a wide-awake drunk person — still impaired, still dangerous. Only your liver processing alcohol over time sobers you up." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "This medical condition develops when someone physically NEEDS alcohol to function normally each day.", answer: "What is Alcohol Use Disorder (AUD) or alcoholism?", educationalNote: "AUD is a recognized brain disease — not weakness or laziness. Over 14 million Americans have AUD, but effective treatment exists." },
+        { difficulty: 2, question: "Drinking during pregnancy can cause this serious condition in babies that affects them for life.", answer: "What is Fetal Alcohol Spectrum Disorder (FASD)?", educationalNote: "There is NO safe amount of alcohol during pregnancy. FASD causes lifelong learning, behavior, and physical problems — and it's 100% preventable." },
+        { difficulty: 2, question: "When you stop drinking after being physically dependent on alcohol, this dangerous condition can occur — unlike most drugs, it can actually kill you.", answer: "What is alcohol withdrawal (or delirium tremens)?", educationalNote: "Alcohol withdrawal can cause seizures and death. It's one of the few drug withdrawals that actually requires medical supervision. Never let someone 'tough it out' alone." },
+        { difficulty: 2, question: "This common pain medication, when mixed with alcohol, causes major liver damage — even at normal doses.", answer: "What is acetaminophen (Tylenol)?", educationalNote: "People mix these all the time without knowing the danger. This combination is one of the leading causes of liver failure in the US." },
+        { difficulty: 2, question: "Alcohol affects THIS part of the teen brain the most, which controls decisions, impulse control, and knowing right from wrong.", answer: "What is the prefrontal cortex?", educationalNote: "The prefrontal cortex isn't fully developed until age 25. Alcohol damages this area faster in teens than in adults — meaning poorer judgment is more likely AND lasts longer." },
+        { difficulty: 2, question: "TRUE OR FALSE: Teens process alcohol the same way adults do.", answer: "What is FALSE? Teens get more impaired from the same amount.", educationalNote: "Teen brains are more sensitive to alcohol's effects on memory and learning, but LESS sensitive to the sedation that signals 'I've had enough.' This leads to drinking more." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "This many Americans die from alcohol-related causes every year — making it the third leading cause of preventable death.", answer: "What is about 95,000?", educationalNote: "That's more than all gun deaths and car crash deaths combined. Alcohol-related deaths include accidents, liver disease, cancer, and violence." },
+        { difficulty: 3, question: "At this blood alcohol level — reached with about 10 drinks — most people lose consciousness and risk death.", answer: "What is 0.30% or higher?", educationalNote: "This is why 'alcohol poisoning' is a medical emergency. Someone who is unconscious from drinking can stop breathing. Always call 911 — never just let them 'sleep it off.'" },
+        { difficulty: 3, question: "This long-term liver disease caused by heavy drinking involves permanent scarring that the liver can NEVER recover from.", answer: "What is cirrhosis?", educationalNote: "Cirrhosis kills over 44,000 Americans annually. Once liver tissue scars, it cannot heal. The good news: it can be stopped by quitting alcohol." },
+        { difficulty: 3, question: "Alcohol use before age 15 increases the risk of later developing alcohol addiction by this much compared to those who wait until 21.", answer: "What is 4 times greater (400%)?", educationalNote: "This is biological, not just about 'bad choices.' The younger a brain is exposed to alcohol, the more it rewires toward addiction. Waiting even a few years makes a huge difference." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This specific chemical compound forms in your bloodstream when you mix alcohol and cocaine — and it's more toxic to your heart than either drug alone.", answer: "What is cocaethylene?", educationalNote: "Cocaethylene stays in your system up to 5 times longer than cocaine and dramatically increases the risk of sudden cardiac death. This 'combo' kills faster than people expect." },
+        { difficulty: 4, question: "Children of parents with alcohol use disorder face this increased risk of developing it themselves — due to both genetics AND environment.", answer: "What is 2 to 9 times higher risk?", educationalNote: "Knowing your family history matters. If addiction runs in your family, your brain's reward system may be wired differently. That's not your fault — but it IS important to know." },
+        { difficulty: 4, question: "TRUE OR FALSE: If someone is passed out from drinking and their lips look blue or they're breathing slowly, you should put them on their side and call 911 immediately.", answer: "What is TRUE? These are signs of alcohol poisoning.", educationalNote: "Blue lips and slow/stopped breathing mean the person may be dying. Many teens have died because friends were afraid to call 911. Minnesota has Good Samaritan laws — you can call for help without fear of prosecution." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This brain mechanism — where neurons compensate for constant alcohol exposure by becoming hyperactive — explains why alcohol withdrawal causes life-threatening seizures.", answer: "What is neuroadaptation (or physical dependence)?", educationalNote: "The brain literally rewires itself around the drug. This is why 'just stopping' heavy drinking can be more dangerous than the drinking itself. Medical detox exists to manage this safely." },
+        { difficulty: 5, question: "This percentage of all traffic deaths in the US involve a drunk driver.", answer: "What is about 30%?", educationalNote: "That's over 13,000 people killed every year — one every 39 minutes. 1 in 3 of you reading this knows someone affected by a drunk driving accident." }
     ],
-    
-    "Drug Types & Classifications": [
-        // EASY
-        { difficulty: 1, question: "This class of drugs includes marijuana, cocaine, and heroin.", answer: "What are illegal drugs?" },
-        { difficulty: 1, question: "These drugs slow down the central nervous system and include alcohol.", answer: "What are depressants?" },
-        { difficulty: 1, question: "These drugs speed up the central nervous system and include cocaine.", answer: "What are stimulants?" },
-        { difficulty: 1, question: "This agency enforces drug laws in the United States.", answer: "What is the DEA (Drug Enforcement Administration)?" },
-        { difficulty: 1, question: "This synthetic opioid is 50 to 100 times stronger than morphine.", answer: "What is fentanyl?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "These drugs alter perception and include LSD and psilocybin mushrooms.", answer: "What are hallucinogens?" },
-        { difficulty: 2, question: "This class includes prescription medications like OxyContin and Vicodin that are often misused.", answer: "What are opioids?" },
-        { difficulty: 2, question: "This number represents how many children were affected by methamphetamine lab incidents in 2004.", answer: "What is over 2,800 children?" },
-        { difficulty: 2, question: "These synthetic drugs are now the primary drivers of fatal drug poisonings in the United States.", answer: "What are fentanyl and methamphetamine?" },
-        { difficulty: 2, question: "This term describes substances designed to mimic controlled drugs while circumventing laws.", answer: "What are New Psychoactive Substances (NPS)?" },
-        
-        // HARD
-        { difficulty: 3, question: "This percentage of children removed from home-based meth labs test positive for toxic chemicals.", answer: "What is 55%?" },
-        { difficulty: 3, question: "This number of children lost a parent to drug overdose between 2011 and 2021.", answer: "What is more than 321,000 children?" },
-        { difficulty: 3, question: "This estimated number of children have a parent with opioid use disorder.", answer: "What is 2.2 million children and adolescents?" },
-        { difficulty: 3, question: "This Schedule classification indicates marijuana's federal legal status despite state legalization.", answer: "What is Schedule I?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "The global drug problem affected this many people using drugs worldwide in 2022.", answer: "What is 292 million people?" },
-        { difficulty: 4, question: "This represents the percentage increase in worldwide drug use over the preceding decade.", answer: "What is 20%?" },
-        { difficulty: 4, question: "This primary mechanism involves opioids binding to these receptors in the brain.", answer: "What are mu-opioid receptors (MORs)?" },
-        { difficulty: 4, question: "This neurotransmitter is primarily affected by stimulants, increasing activity in reward pathways.", answer: "What is dopamine (and norepinephrine)?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "This federal law classifies drugs into different categories based on abuse potential.", answer: "What is the Controlled Substances Act?" },
-        { difficulty: 5, question: "This percentage of cocaine overdose deaths also involve fentanyl contamination.", answer: "What is 70%?" }
+
+    // ─── ROUND 1 CATEGORY 2 ─────────────────────────────────────────────────
+    "Drugs: Know What You're Dealing With": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "Drugs like cocaine and meth that speed up your heart rate and make you feel wired and energetic are called this.", answer: "What are stimulants?", educationalNote: "Stimulants raise your heart rate and blood pressure dangerously. Even first-time users have died from heart attacks — including young, healthy people." },
+        { difficulty: 1, question: "Drugs like alcohol, heroin, and Xanax that slow your breathing and heart rate are called this.", answer: "What are depressants?", educationalNote: "Mixing two depressants (like alcohol and pills) multiplies the risk of your breathing stopping. This combo kills more people than any single drug." },
+        { difficulty: 1, question: "Drugs like LSD, shrooms, and PCP that make you see or hear things that aren't real are called this.", answer: "What are hallucinogens?", educationalNote: "While rare, some people have 'bad trips' that trigger lasting psychological problems. You can't predict how your brain will react — and there's no antidote." },
+        { difficulty: 1, question: "This powerful class of pain-relieving drugs includes heroin, fentanyl, OxyContin, and Vicodin.", answer: "What are opioids?", educationalNote: "Opioids are responsible for almost 75% of all drug overdose deaths in the US. Most people who die from opioid overdose started with prescription pills." },
+        { difficulty: 1, question: "This drug is 50 to 100 times stronger than morphine and is now found mixed into many street drugs — often without the buyer knowing.", answer: "What is fentanyl?", educationalNote: "A lethal dose of fentanyl is 2 milligrams — smaller than a few grains of salt. It's been found in fake pills, cocaine, meth, and even marijuana." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "TRUE OR FALSE: A prescription pill from a friend is safer than a street drug because it came from a pharmacy.", answer: "What is FALSE? Many fake prescription pills are made with fentanyl.", educationalNote: "The DEA reports that 6 out of 10 fake prescription pills (like Xanax and Percocet) contain a lethal dose of fentanyl. There is NO way to tell by looking at them." },
+        { difficulty: 2, question: "This drug, commonly smoked or vaped, comes from the cannabis plant and is now legal in many states — but still illegal federally and harmful to developing teen brains.", answer: "What is marijuana (weed/cannabis)?", educationalNote: "Teen brains that regularly use marijuana show reduced memory, attention, and IQ — changes that can be permanent. Daily use can also lead to dependence." },
+        { difficulty: 2, question: "These drugs inhaled from household products like spray paint, glue, or computer duster are called this — and can cause 'sudden sniffing death' on the FIRST use.", answer: "What are inhalants?", educationalNote: "Inhalants can cause fatal cardiac arrest on the very first use by flooding the heart with chemicals. No amount is safe, and there's no antidote." },
+        { difficulty: 2, question: "This drug, also called 'crystal,' 'ice,' or 'glass,' destroys teeth, causes severe weight loss, and ages people dramatically — often 20 years in just a few years of use.", answer: "What is methamphetamine (meth)?", educationalNote: "Meth causes the brain to dump 3-5x more dopamine than natural pleasures. This means nothing feels good anymore without the drug, and the crash is devastating." },
+        { difficulty: 2, question: "These drugs — including Xanax, Valium, and Klonopin — are prescribed for anxiety but are highly addictive and dangerous to mix with other depressants.", answer: "What are benzodiazepines (benzos)?", educationalNote: "Benzos are the #2 cause of prescription drug overdose deaths after opioids. Many people become addicted while using them as prescribed by a doctor." },
+        { difficulty: 2, question: "This term describes what happens when street dealers mix fentanyl into other drugs without telling the buyer.", answer: "What is drug adulteration or contamination?", educationalNote: "Dealers add fentanyl to increase potency cheaply. Most victims have NO idea what they're taking. Fentanyl test strips can save your life — but even those aren't 100%." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "Mixing an opioid (like heroin or pills) with this depressant drug is the most common combination in fatal overdoses.", answer: "What is alcohol or benzodiazepines (Xanax, Valium)?", educationalNote: "Both suppress breathing on their own. Together, the effect multiplies — not adds. Many people survive using one, then die when they add the other." },
+        { difficulty: 3, question: "This dangerous combination called a 'speedball' — mixing a stimulant and an opioid — has killed celebrities including Chris Farley and John Belushi.", answer: "What is cocaine and heroin (or meth and heroin)?", educationalNote: "Stimulants mask the warning signs of opioid overdose. You don't feel as drowsy, so you take more. When the stimulant wears off first, you overdose from the opioid still in your system." },
+        { difficulty: 3, question: "This percentage of cocaine sold on the street now contains fentanyl — meaning a cocaine user can overdose on opioids they didn't know they were taking.", answer: "What is about 70%?", educationalNote: "Many cocaine users don't carry Narcan because they don't think they're using opioids. But with fentanyl contamination this high, Narcan saves cocaine users' lives too." },
+        { difficulty: 3, question: "This drug was originally developed as an anesthetic for horses and causes 'dissociation' — a feeling of being separated from your body. It's been used as a date-rape drug.", answer: "What is ketamine (Special K)?", educationalNote: "Ketamine and GHB are common 'date rape' drugs because they're colorless and tasteless. They cause amnesia and immobility. Never leave a drink unattended." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This drug schedule classification means a substance has high abuse potential AND no accepted medical use — placing drugs like heroin and LSD here.", answer: "What is Schedule I?", educationalNote: "Schedule I drugs carry the harshest penalties. However, research is now studying some Schedule I substances like psilocybin for treating depression — showing how policy and science can conflict." },
+        { difficulty: 4, question: "When someone mixes MDMA (ecstasy) with certain antidepressants, they risk this potentially fatal condition where the brain has too much serotonin.", answer: "What is serotonin syndrome?", educationalNote: "Serotonin syndrome causes high fever, seizures, and can be fatal. This is one reason why you MUST tell doctors about ALL substances you use — they can't help if they don't know." },
+        { difficulty: 4, question: "This is why naloxone (Narcan) may require MULTIPLE doses to revive someone overdosing on fentanyl, unlike overdoses on regular heroin.", answer: "What is because fentanyl is 50-100x stronger and binds more tightly to opioid receptors?", educationalNote: "Standard heroin Narcan doses often aren't enough for fentanyl. Always give a second or third dose if the person doesn't respond in 2-3 minutes, and ALWAYS call 911." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This phenomenon — where stimulants create the sensation of insects crawling under the skin — is associated with heavy meth use and is a sign of psychosis.", answer: "What is formication (or 'meth mites')?", educationalNote: "Meth-induced psychosis can look identical to schizophrenia and may be permanent with heavy use. Users often cause serious injury to themselves trying to remove the 'bugs.'" },
+        { difficulty: 5, question: "Global drug use grew by this percentage over the last decade, reaching 292 million users worldwide — driven largely by synthetic drugs.", answer: "What is 20%?", educationalNote: "The rise of cheap synthetic drugs (meth, fentanyl, synthetic cannabinoids) is driving this increase. These drugs require no crops, can be made anywhere, and are more potent than ever." }
     ],
-    
-    "Health Effects & Consequences": [
-        // EASY
-        { difficulty: 1, question: "This vital organ can be permanently damaged by excessive alcohol consumption.", answer: "What is the liver?" },
-        { difficulty: 1, question: "This mental health condition is commonly associated with substance abuse.", answer: "What is depression?" },
-        { difficulty: 1, question: "This potentially fatal condition occurs when someone takes too much of a substance.", answer: "What is an overdose?" },
-        { difficulty: 1, question: "This life-saving medication can reverse an opioid overdose.", answer: "What is naloxone (or Narcan)?" },
-        { difficulty: 1, question: "This is the primary cause of death in opioid overdoses.", answer: "What is respiratory depression?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "This cardiovascular condition can result from long-term stimulant abuse.", answer: "What is heart disease or heart attack?" },
-        { difficulty: 2, question: "This brain condition involves physical dependence and compulsive drug seeking.", answer: "What is addiction?" },
-        { difficulty: 2, question: "Children exposed to parental addiction experience this multiple of adverse childhood experiences.", answer: "What are multiple ACEs (Adverse Childhood Experiences)?" },
-        { difficulty: 2, question: "This percentage of overdose deaths involve multiple substances, not just one drug.", answer: "What is 50%?" },
-        { difficulty: 2, question: "Mixing opioids with this class of medications causes the highest risk of fatal overdose.", answer: "What are benzodiazepines (or benzos)?" },
-        
-        // HARD
-        { difficulty: 3, question: "Children who experience abuse have this fold higher likelihood of developing substance use disorders.", answer: "What is 4.3-fold higher?" },
-        { difficulty: 3, question: "This organ system is damaged by methamphetamine, causing the heart to age this many years faster.", answer: "What is 10 years faster?" },
-        { difficulty: 3, question: "Prenatal opioid exposure is associated with these developmental delays evident from 6 months.", answer: "What are motor development delays?" },
-        { difficulty: 3, question: "This percentage of high school seniors in California engaged in mixing multiple drugs in the past year.", answer: "What is 29%?" },
-        { difficulty: 3, question: "Alcohol is involved in this percentage of all drug overdose emergency room visits.", answer: "What is 22%?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "This condition from repeated hypoxia during non-fatal overdoses causes permanent damage.", answer: "What is brain damage (or cognitive impairment)?" },
-        { difficulty: 4, question: "This percentage of 12th graders use illicit drugs according to recent surveys.", answer: "What is 6.5%?" },
-        { difficulty: 4, question: "Prenatal cocaine exposure produces these deficits persisting through early adolescence.", answer: "What are language deficits (and executive function problems)?" },
-        { difficulty: 4, question: "This effect occurs when stimulants mask the deadly respiratory depression of opioids.", answer: "What is delayed or unexpected overdose (when stimulant wears off)?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "This ratio represents learning disabilities and speech difficulties in children with prenatal opioid exposure.", answer: "What is 1 in 7 (compared to 1 in 10 unexposed)?" },
-        { difficulty: 5, question: "This white matter deterioration from heroin use impairs these three cognitive abilities.", answer: "What are decision-making, behavior regulation, and stress responses?" }
+
+    // ─── ROUND 1 CATEGORY 3 ─────────────────────────────────────────────────
+    "What Drugs Actually Do to Your Body": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "Drugs work on your brain by affecting these chemical messengers that control how you feel.", answer: "What are neurotransmitters (like dopamine and serotonin)?", educationalNote: "Drugs hijack the same reward system that makes food, exercise, and connection feel good. Over time, natural pleasures feel boring compared to the drug — that's how addiction traps people." },
+        { difficulty: 1, question: "This life-saving medication can reverse an opioid overdose by blocking opioids from receptors in the brain.", answer: "What is naloxone (Narcan)?", educationalNote: "Narcan is available without a prescription in most states. It has no effect if opioids aren't present, so it's safe to give to anyone you suspect is overdosing. It can save a life in minutes." },
+        { difficulty: 1, question: "Opioids kill by causing this — where breathing slows and stops because the brain 'forgets' to breathe.", answer: "What is respiratory depression (stopped breathing)?", educationalNote: "This is why overdosing people turn blue and can't be woken up. Narcan reverses this in minutes. Calling 911 and giving Narcan are the two most important things you can do." },
+        { difficulty: 1, question: "This condition happens when your body gets so used to a drug that you need more and more to get the same effect.", answer: "What is tolerance?", educationalNote: "Tolerance is one of the earliest signs of developing dependence. It's your body physically adapting to the drug — a danger sign, not a badge of honor." },
+        { difficulty: 1, question: "These uncomfortable symptoms — like shaking, sweating, and nausea — happen when someone who's physically dependent suddenly stops using drugs.", answer: "What is withdrawal?", educationalNote: "Withdrawal proves the body has become physically dependent. It's not just mental. Some withdrawals (like alcohol and benzos) can be fatal without medical help." },
+        { difficulty: 1, question: "Long-term drug use damages this organ — your body's filter — and can lead to complete organ failure.", answer: "What is the liver?", educationalNote: "The liver is the main organ processing drugs and alcohol. Heavy use can cause cirrhosis, liver cancer, and complete failure. Transplant lists are long and many people die waiting." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "Meth use causes this vital muscle — your body's pump — to age 10 years faster than normal, increasing heart attack risk enormously.", answer: "What is the heart?", educationalNote: "Meth forces your heart to beat faster and harder for extended periods. Even young meth users have had fatal heart attacks. The damage is often permanent." },
+        { difficulty: 2, question: "This percentage of overdose deaths involve MORE than one drug — showing that mixing substances is far more deadly than using just one.", answer: "What is about 50%?", educationalNote: "Most people who die from overdose had multiple substances in their system. This is why 'just a little' of something extra can be the thing that kills you." },
+        { difficulty: 2, question: "Heavy cocaine use destroys cartilage and tissue in this facial area — a visible and permanent form of damage.", answer: "What is the nasal septum (nose)?", educationalNote: "Regular cocaine snorting can literally collapse the septum dividing the nostrils. This damage is permanent and requires surgery. It's a telltale sign of long-term cocaine use." },
+        { difficulty: 2, question: "Regular weed smoking causes this lung condition — producing more mucus and chronic cough — similar to tobacco smoking.", answer: "What is chronic bronchitis?", educationalNote: "Marijuana smoke contains many of the same carcinogens as tobacco smoke. While the cancer link isn't as strong, the lung damage from smoking weed is real and cumulative." },
+        { difficulty: 2, question: "Teens who use substances regularly are twice as likely to develop serious mental health problems, including these two most common conditions.", answer: "What are depression and anxiety?", educationalNote: "This relationship goes both ways — drugs can trigger mental illness, AND people with mental illness are more likely to self-medicate with drugs. Treating both together is essential." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "Repeated opioid overdoses that cut off oxygen to the brain — even ones survived — cause this type of permanent damage.", answer: "What is brain damage (hypoxic brain injury)?", educationalNote: "Every non-fatal overdose is a near-death event that can cause permanent cognitive damage. Some survivors have lasting memory, personality, or motor function problems." },
+        { difficulty: 3, question: "This sexually transmitted infection spreads rapidly among people who inject drugs and share needles — and has no cure.", answer: "What is HIV/AIDS?", educationalNote: "Needle-sharing is one of the main ways HIV spreads. Syringe service programs — where clean needles are available — dramatically reduce HIV spread without increasing drug use." },
+        { difficulty: 3, question: "Meth destroys this part of the brain responsible for experiencing pleasure — meaning users may NEVER feel normal happiness again even after they quit.", answer: "What are dopamine receptors?", educationalNote: "Meth causes a dopamine surge 3-5 times more intense than natural rewards. The receptors are then damaged from overstimulation. Recovery is possible, but can take years of abstinence." },
+        { difficulty: 3, question: "This disease of the liver — spread through sharing needles or tattooing equipment — causes long-term liver damage and is more common than HIV among drug users.", answer: "What is Hepatitis C?", educationalNote: "Unlike HIV, Hepatitis C is now curable with a 12-week medication course. But many people don't know they have it until serious liver damage has already occurred." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This brain region — responsible for decision-making and self-control — actually SHRINKS with chronic drug use, making it physically harder to make good choices.", answer: "What is the prefrontal cortex?", educationalNote: "This is why 'just deciding to stop' is so hard for people with addiction. The brain region that controls willpower has literally been damaged by the drug. This is biology, not weakness." },
+        { difficulty: 4, question: "These developmental problems — including motor delays, language problems, and learning disabilities — affect 1 in 7 children born to mothers who used opioids during pregnancy.", answer: "What are neonatal abstinence syndrome effects / developmental delays?", educationalNote: "Babies born to opioid-addicted mothers go through withdrawal. The ripple effects of addiction reach children before they're even born." },
+        { difficulty: 4, question: "Chronic stress from living in a chaotic environment (like a home with addiction) actually physically changes these areas of the brain, making youth more vulnerable to addiction themselves.", answer: "What are the stress-response systems (amygdala, HPA axis)?", educationalNote: "This is NOT your fault if you grew up in that environment. But knowing this helps explain why trauma and addiction are so connected — and why trauma treatment is part of addiction treatment." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "Long-term heroin use causes deterioration of this brain material that helps nerve cells communicate — permanently impairing decision-making, behavior control, and stress response.", answer: "What is white matter?", educationalNote: "Neuroimaging studies show visible brain changes in people who've used heroin long-term. The good news: some of this recovers with sustained abstinence — giving hope for real healing." },
+        { difficulty: 5, question: "This phenomenon — where a person in withdrawal experiences intense anxiety, depression, and inability to feel pleasure — is called this and can last weeks or months after quitting.", answer: "What is post-acute withdrawal syndrome (PAWS)?", educationalNote: "PAWS is a major reason people relapse. Knowing it's real, medical, and temporary helps people push through. Most symptoms gradually improve over 1-2 years of sobriety." }
     ],
-    
-    "Prevention & Protective Factors": [
-        // EASY
-        { difficulty: 1, question: "This simple two-letter word is the most effective way to avoid substance abuse.", answer: "What is 'No'?" },
-        { difficulty: 1, question: "These people in your life can provide support and positive influence to help avoid drugs.", answer: "Who are family and friends?" },
-        { difficulty: 1, question: "These healthy activities can serve as alternatives to drug use.", answer: "What are sports, hobbies, or exercise?" },
-        { difficulty: 1, question: "This type of education helps people understand the risks of substance abuse.", answer: "What is drug education or prevention programs?" },
-        { difficulty: 1, question: "This foundational belief provides essential motivation for change in recovery.", answer: "What is hope?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "This coping skill helps manage stress without turning to substances.", answer: "What are healthy coping mechanisms (meditation, exercise, talking to someone)?" },
-        { difficulty: 2, question: "Having strong connections with this group is the #1 protective factor against drug use.", answer: "What is family?" },
-        { difficulty: 2, question: "Participating in these after-school activities reduces drug use risk by this percentage.", answer: "What is 50%?" },
-        { difficulty: 2, question: "Having this type of trusted adult who isn't a parent to talk to protects youth.", answer: "What is a mentor?" },
-        { difficulty: 2, question: "This SAMHSA dimension of recovery involves a stable and safe place to live.", answer: "What is Home?" },
-        
-        // HARD
-        { difficulty: 3, question: "Teens with untreated mental illness are this multiple more likely to develop substance use disorders.", answer: "What is twice as likely (2x)?" },
-        { difficulty: 3, question: "These four major dimensions are essential for a life in recovery according to SAMHSA.", answer: "What are Health, Home, Purpose, and Community?" },
-        { difficulty: 3, question: "This term describes skills for handling stress and emotions without drugs.", answer: "What are coping skills?" },
-        { difficulty: 3, question: "This percentage of people aged 12 or older reported misusing prescription pain relievers in 2021.", answer: "What is 3.1% (or 8.7 million individuals)?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "These are SAMHSA's four dimensions that define a life in recovery.", answer: "What are Health, Home, Purpose, and Community?" },
-        { difficulty: 4, question: "This model describes stages individuals pass through when changing behavior including precontemplation.", answer: "What is the Transtheoretical Model of Change?" },
-        { difficulty: 4, question: "This unofficial sixth stage in the change model is viewed as part of the non-linear recovery process.", answer: "What is Relapse?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "These are three of SAMHSA's 10 guiding principles of recovery including person-driven and holistic.", answer: "What are Hope, Person-Driven, Many Pathways, Holistic, Peer Support, etc.?" },
-        { difficulty: 5, question: "This minimum treatment duration is necessary for significant improvement according to NIDA.", answer: "What is at least three months?" }
+
+    // ─── ROUND 1 CATEGORY 4 ─────────────────────────────────────────────────
+    "Myths vs. Facts: What's Real": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "TRUE OR FALSE: Addiction is a character flaw — people become addicted because they're weak or have no willpower.", answer: "What is FALSE? Addiction is a chronic brain disease.", educationalNote: "The American Medical Association, APA, and WHO all classify addiction as a medical disorder. Judging addicts as 'weak' prevents people from getting life-saving treatment." },
+        { difficulty: 1, question: "TRUE OR FALSE: You can tell if a pill or powder has fentanyl in it by looking at it, tasting it, or smelling it.", answer: "What is FALSE? You cannot detect fentanyl without a test strip.", educationalNote: "Fentanyl is odorless, colorless, and tasteless. Even drug dealers sometimes don't know their supply contains it. The only way to test is with fentanyl test strips — available at pharmacies." },
+        { difficulty: 1, question: "TRUE OR FALSE: Most teens your age are using drugs or drinking regularly.", answer: "What is FALSE? Most teens don't use drugs.", educationalNote: "Media makes drug use look normal. In reality, only about 6.5% of high school seniors use illicit drugs regularly. The majority of teens choose not to use — even if it doesn't feel that way." },
+        { difficulty: 1, question: "TRUE OR FALSE: Marijuana today is basically the same as marijuana from 20-30 years ago.", answer: "What is FALSE? Today's marijuana is 3-5 times stronger.", educationalNote: "THC content in weed has increased from about 4% in the 1990s to 12-15% in flower and up to 90%+ in concentrates. Higher THC means higher risk of psychosis, dependence, and anxiety." },
+        { difficulty: 1, question: "TRUE OR FALSE: If you relapse after being sober, it means treatment failed and recovery is hopeless.", answer: "What is FALSE? Relapse is a common part of recovery, not the end.", educationalNote: "Addiction relapse rates (40-60%) are similar to diabetes and hypertension. Relapse means the treatment plan needs adjusting — not that the person is hopeless or has to start over from zero." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "TRUE OR FALSE: Using drugs once or twice is safe — you can't get addicted from just trying something.", answer: "What is FALSE? One use can be fatal with fentanyl.", educationalNote: "One pill can kill — this isn't exaggeration. Fentanyl has killed people on their very first use. First use is also when many people begin the path to addiction." },
+        { difficulty: 2, question: "TRUE OR FALSE: If someone overdoses, giving them a stimulant like cocaine or meth will wake them up.", answer: "What is FALSE? This combination can cause fatal cardiac arrest.", educationalNote: "This is a deadly myth. Stimulants can mask overdose symptoms while the opioids continue suppressing breathing. The answer is Narcan and 911 — always." },
+        { difficulty: 2, question: "TRUE OR FALSE: Vaping is much safer than smoking cigarettes — it's basically just water vapor.", answer: "What is FALSE? Vaping delivers nicotine and toxic chemicals into the lungs.", educationalNote: "Vaping causes 'popcorn lung' (EVALI), delivers nicotine more efficiently than cigarettes (creating faster addiction), and has caused deaths. Many vapes also contain THC and synthetic cannabinoids." },
+        { difficulty: 2, question: "TRUE OR FALSE: 'Natural' drugs like mushrooms and marijuana are safe because they come from plants.", answer: "What is FALSE? Natural doesn't mean safe.", educationalNote: "Arsenic is natural. Tobacco is natural. Many 'natural' drugs cause addiction, psychosis, and death. 'Natural' is a marketing word, not a safety certification." },
+        { difficulty: 2, question: "TRUE OR FALSE: You can sober someone up faster by giving them food, water, coffee, or making them walk around.", answer: "What is FALSE? Only time sobers you up.", educationalNote: "These actions can help prevent further drinking or aspiration, but they don't affect how fast your liver processes alcohol. Nothing speeds up sobriety except time." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "TRUE OR FALSE: Genetic factors don't really affect addiction — it's all about choices and environment.", answer: "What is FALSE? Genetics account for about 40-60% of addiction risk.", educationalNote: "Biological children of alcoholic parents have 2-9 times higher risk of developing addiction — even when adopted by non-addicted families at birth. Your family history is real health information." },
+        { difficulty: 3, question: "TRUE OR FALSE: Medication-Assisted Treatment (MAT) — using medications like methadone or Suboxone — is just replacing one addiction with another.", answer: "What is FALSE? MAT is evidence-based, life-saving medical treatment.", educationalNote: "MAT reduces overdose deaths by 50%, reduces criminal activity, and improves quality of life. People on MAT hold jobs, raise families, and live full lives. This stigma kills people." },
+        { difficulty: 3, question: "TRUE OR FALSE: Harm reduction programs like handing out clean needles increase drug use in communities.", answer: "What is FALSE? Research consistently shows they do NOT increase drug use.", educationalNote: "Syringe programs reduce HIV and Hepatitis C transmission, connect people to treatment, and save lives — without increasing drug use. This is backed by decades of research." },
+        { difficulty: 3, question: "TRUE OR FALSE: Teens in the foster care and group home system have the same rates of substance use as the general teen population.", answer: "What is FALSE? System-involved youth have significantly higher rates.", educationalNote: "Research shows youth in the foster care system are 2-3 times more likely to develop substance use problems, largely due to trauma, instability, and lack of supportive adults. This is why education matters SO much." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "TRUE OR FALSE: If someone is 'tolerant' to a drug — meaning they use a lot and seem fine — they're actually safer from overdose than a new user.", answer: "What is FALSE? Tolerant users face HIGHER overdose risk in some situations.", educationalNote: "After any period of not using (jail, rehab, hospital), tolerance drops dramatically. Using the same amount as before can be fatal. This is when most people die — shortly after release." },
+        { difficulty: 4, question: "TRUE OR FALSE: Parents who talk openly to their kids about drugs — explaining risks honestly — are more likely to have kids who try drugs out of curiosity.", answer: "What is FALSE? Open, honest conversations REDUCE drug use.", educationalNote: "Research consistently shows that teens with parents/trusted adults who talk openly and honestly about drugs are less likely to use — and more likely to seek help if they do." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "TRUE OR FALSE: Environmental and social factors are MORE important than genetics in predicting who will develop addiction.", answer: "What is FALSE — both are equally important? Genetics AND environment each account for about half the risk.", educationalNote: "Neither genes nor environment alone predicts addiction. It's the INTERACTION of both — plus individual factors like mental health, age of first use, and trauma — that determines risk." },
+        { difficulty: 5, question: "TRUE OR FALSE: Teen brains are more sensitive to both the rewarding effects AND the damaging effects of drugs compared to adult brains.", answer: "What is TRUE? Teen brains are uniquely vulnerable.", educationalNote: "This is the neuroscience of why early drug use is so dangerous. Rewarding effects are stronger (making addiction more likely), and damage to developing brain structures is more severe and lasting." }
     ],
-    
-    "Treatment & Recovery": [
-        // EASY
-        { difficulty: 1, question: "This is the first step in overcoming addiction.", answer: "What is admitting you have a problem?" },
-        { difficulty: 1, question: "This process helps the body eliminate drugs and manage withdrawal symptoms.", answer: "What is detoxification or detox?" },
-        { difficulty: 1, question: "This type of therapy involves talking with a counselor about addiction issues.", answer: "What is counseling or psychotherapy?" },
-        { difficulty: 1, question: "These peer support groups use a 12-step program to help with recovery.", answer: "What are Alcoholics Anonymous (AA) or Narcotics Anonymous (NA)?" },
-        { difficulty: 1, question: "This hotline number provides 24/7 crisis support for substance abuse.", answer: "What is 988 or 1-800-662-4357 (SAMHSA)?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "This type of treatment allows patients to live at home while receiving care.", answer: "What is outpatient treatment?" },
-        { difficulty: 2, question: "This evidence-based therapy helps identify thoughts and triggers leading to drug use.", answer: "What is Cognitive Behavioral Therapy (or CBT)?" },
-        { difficulty: 2, question: "This type of support from people with lived experience has the highest satisfaction rates.", answer: "What is peer support?" },
-        { difficulty: 2, question: "This government insurance for low-income families covers addiction treatment.", answer: "What is Medicaid?" },
-        { difficulty: 2, question: "This philosophy prioritizes reducing negative consequences without requiring immediate abstinence.", answer: "What is harm reduction?" },
-        
-        // HARD
-        { difficulty: 3, question: "Depression symptoms in teens drop from this percentage to 16% after successful treatment.", answer: "What is 49%?" },
-        { difficulty: 3, question: "This online tool at FindTreatment.gov helps locate treatment facilities near you.", answer: "What is SAMHSA's treatment locator?" },
-        { difficulty: 3, question: "This model provides clear goal of total sobriety and is foundational to 12-Step programs.", answer: "What is the abstinence-based model?" },
-        { difficulty: 3, question: "NIDA established this many principles for effective addiction treatment programs.", answer: "What are several foundational principles (individualized, readily available, holistic, etc.)?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "This combination of medication and therapy is most effective for many patients according to NIDA.", answer: "What is integrated medication and behavioral therapy?" },
-        { difficulty: 4, question: "These common harm reduction strategies include naloxone and these programs preventing disease spread.", answer: "What are syringe service programs?" },
-        { difficulty: 4, question: "This type of site allows medically supervised substance use to prevent fatal overdoses.", answer: "What are supervised consumption sites?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "Recovery is defined by SAMHSA as this process involving four major dimensions.", answer: "What is 'a process of change through which individuals improve health and wellness, live self-directed lives, and reach full potential'?" },
-        { difficulty: 5, question: "Research shows harm reduction strategies have this effect on crime and drug use rates.", answer: "What is no increase (they do not increase crime or drug use)?" }
+
+    // ─── ROUND 1 CATEGORY 5 ─────────────────────────────────────────────────
+    "Prevention & Making Good Choices": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "This simple strategy — planning what you'll say BEFORE you're in a situation — makes it much easier to say no to drugs.", answer: "What is having a plan or rehearsing a refusal?", educationalNote: "When you're already in the moment, your brain is under pressure and it's hard to think clearly. Having a practiced response — like 'I'm good' or 'Nah, I'm trying to stay out of trouble' — removes the pressure." },
+        { difficulty: 1, question: "Research shows this is the single most important protective factor against teen drug use.", answer: "What is having a strong connection to family or a caring adult?", educationalNote: "Teens who have even ONE consistent, caring adult in their life have dramatically lower rates of drug use, mental illness, and involvement with the justice system. Connection protects." },
+        { difficulty: 1, question: "Participating in these activities after school or in the evenings reduces drug use risk by about 50%.", answer: "What are sports, clubs, jobs, or other structured activities?", educationalNote: "Idle time and boredom are significant risk factors for experimentation. Activities provide purpose, connection, and positive outlet for stress — the same things drugs promise but don't deliver." },
+        { difficulty: 1, question: "This feeling — believing your life has meaning and purpose — is one of the most powerful protections against addiction.", answer: "What is having a sense of purpose or hope?", educationalNote: "People who believe their future matters are less likely to risk it. Building goals — even small ones — creates reasons to stay clean." },
+        { difficulty: 1, question: "These skills — like exercising, talking to someone, journaling, or breathing exercises — help manage stress without substances.", answer: "What are healthy coping skills?", educationalNote: "Drugs are often used to cope with stress, boredom, trauma, or pain. Building healthy alternatives for managing hard feelings is one of the most important life skills you can develop." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "This technique — where you give an excuse that saves face without admitting you're choosing not to use — is an effective way to avoid peer pressure.", answer: "What is giving an exit strategy or excuse ('I'm on probation,' 'I'm trying out for something,' etc.)?", educationalNote: "Sometimes the simplest out is the most believable. Having a ready excuse removes the pressure without making things awkward. There's no shame in using one." },
+        { difficulty: 2, question: "Teens with undiagnosed or untreated depression, anxiety, ADHD, or trauma are this many times more likely to develop substance use problems.", answer: "What is twice as likely (2x)?", educationalNote: "Many people self-medicate real pain with drugs. Treating the underlying mental health issue dramatically reduces substance use. If you're struggling, telling a counselor or doctor matters." },
+        { difficulty: 2, question: "This type of pressure — where you USE drugs or drink because you THINK everyone else is — is based on a misperception about how many peers actually use.", answer: "What is perceived social norms pressure?", educationalNote: "Most teens OVERESTIMATE how many peers use drugs. When you learn the actual numbers (minority use), it becomes easier to choose not to use without feeling alone." },
+        { difficulty: 2, question: "Having at least one trusted adult outside your immediate family — a mentor, coach, counselor, or staff member — reduces youth risk of substance use by a significant amount.", answer: "What is having a mentor or trusted adult?", educationalNote: "Even one consistent, trustworthy adult relationship can change the trajectory of a young person's life. If you have that person — lean on them. If you're still finding them — keep looking." },
+        { difficulty: 2, question: "These SAMHSA four dimensions define a healthy, stable life in recovery and can serve as goals for anyone wanting a better life.", answer: "What are Health, Home, Purpose, and Community?", educationalNote: "Having a safe place to live, people who care about you, meaningful activity, and physical/mental health — these are human needs. Pursuing them is pursuing recovery." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "This coping approach — recognizing when a feeling is becoming overwhelming and using a pre-planned strategy before acting — is called this.", answer: "What is emotional regulation or emotional coping?", educationalNote: "Drugs are often used to numb or escape difficult emotions. Learning to ride out hard feelings — knowing they will pass — is a crucial skill. It's harder than it sounds but gets easier with practice." },
+        { difficulty: 3, question: "Research shows that youth who feel this way about school — meaning they feel connected and like they belong — are significantly less likely to use drugs.", answer: "What is school connectedness or school belonging?", educationalNote: "School isn't just about grades. Feeling like you matter somewhere, that someone notices you, that you're part of something — these feelings are profoundly protective." },
+        { difficulty: 3, question: "This percentage of people with substance use disorders also have a co-occurring mental health condition — showing why mental health treatment is inseparable from addiction treatment.", answer: "What is about 50%?", educationalNote: "This is called a co-occurring disorder (or dual diagnosis). Treating only addiction without the mental health piece — or vice versa — is why treatment sometimes fails. Both must be addressed." },
+        { difficulty: 3, question: "Knowing that first drug use before this age dramatically increases lifetime addiction risk is an important reason why waiting matters.", answer: "What is age 15 (using before 15 quadruples risk)?", educationalNote: "This isn't about being 'good.' The brain is physically more vulnerable when it's still developing. Waiting even 2-3 more years significantly reduces your biological risk of addiction." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This model of behavior change describes stages including Precontemplation, Contemplation, Preparation, Action, and Maintenance — and explains why people aren't always 'ready' to change.", answer: "What is the Stages of Change (Transtheoretical) Model?", educationalNote: "Understanding this model helps you meet people where they are — including yourself. Pushing someone who isn't 'ready' usually backfires. Harm reduction works because it helps people in ANY stage." },
+        { difficulty: 4, question: "Research shows this minimum duration of treatment or engagement in recovery supports is needed for significant, lasting improvement according to NIDA.", answer: "What is at least three months?", educationalNote: "Quick fixes don't work for addiction. Like physical therapy for a broken leg, recovery takes time and repetition. People who stay engaged longer do dramatically better." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This prevention approach — which focuses on building strengths, skills, and resources rather than just avoiding risk — is considered more effective than fear-based or information-only programs.", answer: "What is strength-based prevention?", educationalNote: "Telling teens 'drugs are bad' doesn't work. Building confidence, purpose, connection, and coping skills does. Programs that focus on who you're becoming are more effective than ones focused on what to avoid." },
+        { difficulty: 5, question: "This concept describes how positive childhood experiences — like stable relationships, opportunities to learn, and community — counterbalance the effect of adverse ones.", answer: "What are Positive Childhood Experiences (PCEs) or protective factors?", educationalNote: "ACEs (Adverse Childhood Experiences) get a lot of attention — but PCEs are equally real. Resilience is built through positive experiences. Every good day, connection, and success matters." }
     ],
-    
-    "Legal Consequences & Social Impact": [
-        // EASY
-        { difficulty: 1, question: "This crime involves driving while under the influence of alcohol or drugs.", answer: "What is DUI or DWI?" },
-        { difficulty: 1, question: "This legal consequence can result from drug possession and affects employment opportunities.", answer: "What is a criminal record or felony conviction?" },
-        { difficulty: 1, question: "This national organization founded in 1935 uses a 12-step program to help alcoholics.", answer: "What is Alcoholics Anonymous (AA)?" },
-        { difficulty: 1, question: "Living with addicted parents exposes children to these traumatic experiences.", answer: "What are Adverse Childhood Experiences (ACEs)?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "Possession of any amount of fentanyl is this level of crime in most states.", answer: "What is a felony?" },
-        { difficulty: 2, question: "A drug conviction makes you ineligible for this type of financial aid for college.", answer: "What is federal student aid (or FAFSA)?" },
-        { difficulty: 2, question: "This immediate consequence can result from drugs in a group home placement.", answer: "What is removal/discharge (or placement change)?" },
-        { difficulty: 2, question: "Children in addiction-affected households develop this maladaptive behavior assuming adult roles.", answer: "What is role reversal (or parentification)?" },
-        
-        // HARD
-        { difficulty: 3, question: "Selling drugs within this distance of a school doubles criminal penalties.", answer: "What is 1,000 feet?" },
-        { difficulty: 3, question: "A DUI conviction typically results in license suspension for this time period for teens.", answer: "What is one year?" },
-        { difficulty: 3, question: "Children of addicted parents demonstrate these rates of school problems.", answer: "What are higher rates of absenteeism, truancy, and suspension?" },
-        { difficulty: 3, question: "This behavioral pattern involves children becoming chronic people-pleasers losing their identity.", answer: "What is approval-seeking?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "These long-term adult outcomes affect children of addicts including self-judgment and guilt.", answer: "What are maladaptive coping patterns (harsh self-judgment, depression, anxiety, people-pleasing)?" },
-        { difficulty: 4, question: "Children taught to maintain family secrets develop these social difficulties.", answer: "What are trust issues and social isolation?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "This combination known as speedballing involves mixing these two drug classes.", answer: "What is cocaine and heroin (stimulant and opioid)?" },
-        { difficulty: 5, question: "Adult children of addicts frequently struggle with this fear regarding their own parenting abilities.", answer: "What is fear of inadequate parenting (or repeating the cycle)?" }
+
+    // ─── ROUND 1 CATEGORY 6 ─────────────────────────────────────────────────
+    "Recognizing Signs & What To Do": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "These are the signs of an opioid overdose — what you should look for if you think someone is overdosing.", answer: "What are: slow/stopped breathing, blue lips, unresponsive, pinpoint pupils?", educationalNote: "You only have minutes. If someone is breathing fewer than once every 5 seconds or not at all — give Narcan immediately and call 911. Stay with them." },
+        { difficulty: 1, question: "This is the FIRST thing you should do if you think someone near you is overdosing.", answer: "What is call 911 (and give Narcan if available)?", educationalNote: "Don't wait to see if they get better on their own. Every minute without oxygen causes brain damage. Many states have Good Samaritan laws — you won't get in trouble for calling for help." },
+        { difficulty: 1, question: "These are common signs that someone might be using drugs: red eyes, slurred speech, sudden money problems, secretiveness, and dramatic mood changes.", answer: "What are warning signs of substance use?", educationalNote: "These signs alone don't mean someone is using drugs — but they're worth paying attention to, especially when multiple signs appear together." },
+        { difficulty: 1, question: "If a friend tells you they're using drugs, this is the most helpful response.", answer: "What is to listen without judging, express concern, and encourage them to talk to a trusted adult?", educationalNote: "Lecturing or threatening usually pushes people away. Listening and showing you care is more powerful. You don't have to fix it yourself — but connecting them to help can save their life." },
+        { difficulty: 1, question: "This is what you should do if someone puts something in your drink at a party.", answer: "What is don't drink it, get away from that person, tell a trusted adult, and get to safety?", educationalNote: "Date rape drugs like GHB and Rohypnol are colorless and tasteless. Go with your gut — if something feels off, leave. Your safety matters more than being polite." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "This position — placing an unconscious person on their side — can save their life by preventing them from choking on vomit.", answer: "What is the recovery position?", educationalNote: "Unconscious intoxicated people frequently vomit and can choke on it. Placing them on their side takes 10 seconds and can be the difference between life and death." },
+        { difficulty: 2, question: "These personal drug testing tools — available at pharmacies — can detect fentanyl in pills, powder, or other substances before using them.", answer: "What are fentanyl test strips?", educationalNote: "Test strips save lives. They're legal in most states, inexpensive, and easy to use. A positive result means DON'T USE IT. Even a negative result isn't 100% guarantee — fentanyl can be unevenly distributed in a substance." },
+        { difficulty: 2, question: "If you're in a group home or residential program and you know a roommate is using, this is your responsibility.", answer: "What is telling staff, even if it feels like 'snitching'?", educationalNote: "If your roommate dies, you'll carry that. Staff are there to keep people safe — including your roommate. Getting help for someone isn't betrayal. It's the opposite." },
+        { difficulty: 2, question: "This national helpline — 988 or 1-800-662-HELP — provides 24/7 free and confidential support for anyone struggling with mental health or substance use.", answer: "What is the SAMHSA National Helpline or 988 Suicide and Crisis Lifeline?", educationalNote: "You don't have to be in a crisis to call. You can call for advice, to talk, or to help a friend. It's free, private, and staffed by real people who care." },
+        { difficulty: 2, question: "This is why 'sleeping it off' is sometimes NOT safe advice for someone who is very drunk or has been drugged.", answer: "What is because they can stop breathing, vomit and choke, or go into a coma while unconscious?", educationalNote: "Alcohol poisoning and sedative overdoses can get worse while someone is unconscious. Checking on someone frequently, placing them in recovery position, and watching their breathing are essential." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "Many states have this law that protects people from prosecution when they call 911 for an overdose — making it safer to get help.", answer: "What is the Good Samaritan law or Medical Amnesty law?", educationalNote: "Fear of getting in trouble is one reason people don't call 911 during an overdose. Good Samaritan laws exist specifically to remove this barrier. Know your state's law." },
+        { difficulty: 3, question: "This technique — sternal rub, pain response, or calling someone's name loudly — is used to assess whether an overdose victim is conscious or responsive.", answer: "What is a consciousness or responsiveness check?", educationalNote: "Rub your knuckles firmly on the breastbone. No response = emergency. Don't just shake someone gently and assume they're okay if they don't wake up." },
+        { difficulty: 3, question: "When giving Narcan to someone overdosing and they don't respond, this is how long you should wait before giving a second dose.", answer: "What is 2-3 minutes?", educationalNote: "With fentanyl, one dose often isn't enough. Carry multiple doses. Continue rescue breathing between doses, and ALWAYS call 911 — Narcan wears off faster than fentanyl, so they can re-overdose." },
+        { difficulty: 3, question: "This red flag behavior — when someone gives away prized possessions, says goodbye, or talks about not being around — should be treated as a potential warning sign of this.", answer: "What is suicidal ideation (thinking about suicide)?", educationalNote: "Substance use and suicidal thoughts often co-occur. If you notice these signs in a peer, tell a staff member immediately. Asking 'are you thinking about killing yourself?' does NOT plant the idea — it opens a door." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This naloxone administration method — spraying it in one nostril, then the other — is the most common way to administer Narcan without a needle.", answer: "What is intranasal (nasal spray) naloxone?", educationalNote: "Nasal Narcan is easy to carry, requires no training, and can be given even to someone face-down. Many pharmacies give it free without a prescription. Carrying it means you could save a life." },
+        { difficulty: 4, question: "After someone is revived with Narcan, this important fact about their condition is why they MUST still go to the hospital.", answer: "What is that Narcan wears off in 30-90 minutes, but fentanyl can last much longer — causing re-overdose?", educationalNote: "People wake up from Narcan feeling fine and often refuse the hospital. They may re-overdose alone later. Getting them to care isn't optional — it's life or death." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This evidence-based school and community program approach — which teaches refusal skills, emotional regulation, AND builds social connection — has the strongest evidence for preventing teen drug use.", answer: "What are comprehensive, skills-based prevention programs (like Life Skills Training)?", educationalNote: "Programs that ONLY provide information (like D.A.R.E.'s original model) have been shown to be largely ineffective. Building skills and connection works — fear and information alone don't." },
+        { difficulty: 5, question: "This type of behavioral pattern — where a young person's substance use gradually shifts from social/experimental use to use motivated by avoiding withdrawal — signals the transition to physical dependence.", answer: "What is using to 'get normal' or to avoid feeling sick (relief-motivated use)?", educationalNote: "This shift is a critical warning sign. The person is no longer using for fun — they're using to survive. This is when professional help is most urgently needed." }
     ],
-    
-    "Brain Science & Addiction": [
-        // EASY
-        { difficulty: 1, question: "This neurotransmitter in the brain is primarily affected by addictive substances.", answer: "What is dopamine?" },
-        { difficulty: 1, question: "This part of the brain is responsible for pleasure and reward.", answer: "What is the reward pathway (or mesolimbic system)?" },
-        { difficulty: 1, question: "This condition occurs when the body adapts to a drug requiring more to achieve the same effect.", answer: "What is tolerance?" },
-        { difficulty: 1, question: "This happens when stopping drug use causes uncomfortable physical symptoms.", answer: "What is withdrawal?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "Chronic stress from addiction affects brain regions responsible for these three functions.", answer: "What are executive function, emotional regulation, and impulse control?" },
-        { difficulty: 2, question: "Cocaine works by blocking the reuptake of dopamine through this mechanism.", answer: "What is blocking the dopamine transporter?" },
-        { difficulty: 2, question: "This adaptation occurs in brain pathways involving glutamate and stress hormones with chronic use.", answer: "What are neuroadaptations?" },
-        { difficulty: 2, question: "This brain region affected by cocaine use impairs decision-making and self-insight.", answer: "What is the orbitofrontal cortex?" },
-        
-        // HARD
-        { difficulty: 3, question: "Opioids work by binding to these specific receptors particularly in areas controlling pain and emotions.", answer: "What are mu-opioid receptors?" },
-        { difficulty: 3, question: "This neurobiological vulnerability from chronic stress creates lasting susceptibility to mental health problems.", answer: "What are changes in brain development (particularly executive function regions)?" },
-        { difficulty: 3, question: "Repeated hypoxia from overdoses causes this type of permanent neurological damage.", answer: "What is brain damage (white matter deterioration, cognitive impairment)?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "Stimulants increase levels of these two primary neurotransmitters in the brain.", answer: "What are dopamine and norepinephrine?" },
-        { difficulty: 4, question: "This cocaine-related phenomenon involves sensitization to these adverse effects while tolerance develops.", answer: "What is sensitization to anxiety and convulsions?" },
-        { difficulty: 4, question: "Long-term opioid use is associated with these structural brain changes.", answer: "What is reduced gray matter?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "This pathway in the brain where dopamine accumulates is called this and drives cocaine's euphoric effects.", answer: "What is the mesolimbic reward pathway?" },
-        { difficulty: 5, question: "Neuroadaptations in these brain pathways involving glutamate impair this cognitive function.", answer: "What is decision-making and behavioral control (orbitofrontal cortex)?" }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // ROUND 2 CATEGORIES (indices 6-11)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    // ─── ROUND 2 CATEGORY 7 ─────────────────────────────────────────────────
+    "The Fentanyl Crisis": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "This synthetic opioid — now the #1 cause of overdose deaths in the US — is this many times stronger than morphine.", answer: "What is fentanyl — 50 to 100 times stronger?", educationalNote: "For comparison, fentanyl is 100x stronger than morphine and about 50x stronger than heroin. The strength is why even tiny amounts can kill." },
+        { difficulty: 1, question: "A lethal dose of fentanyl is about this size — smaller than a few grains of salt or the head on a coin.", answer: "What is 2 milligrams (about the size of Lincoln's head on a penny)?", educationalNote: "You cannot see 2 milligrams. You cannot smell or taste it. This is why 'just a little' can kill. There is no safe amount when you can't detect it." },
+        { difficulty: 1, question: "This tool — available at pharmacies without a prescription in most states — can detect fentanyl in drugs before using them.", answer: "What is a fentanyl test strip?", educationalNote: "Test strips are legal and inexpensive. They've been shown to change drug use behavior when people get a positive result. A negative result reduces but doesn't eliminate risk." },
+        { difficulty: 1, question: "Fentanyl has been found mixed into these three drugs that users often don't associate with opioids — making their overdose risk much higher.", answer: "What are cocaine, meth, and counterfeit pills (fake Xanax, Percocet, etc.)?", educationalNote: "Many people who die from fentanyl overdose didn't know they were taking opioids. They were cocaine users, or thought they had a real Xanax. Naloxone should be in every setting." },
+        { difficulty: 1, question: "TRUE OR FALSE: You can absorb a dangerous amount of fentanyl through your skin just by touching it.", answer: "What is FALSE? Skin contact alone is NOT a risk for non-medically produced fentanyl.", educationalNote: "This myth causes people not to help overdose victims for fear of exposure. Regular powdered fentanyl requires large amounts for extended skin contact to absorb — first responders are safe using gloves." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "This percentage of the 100,000+ drug overdose deaths in the US in 2021 involved fentanyl or another synthetic opioid.", answer: "What is about 71% (nearly 3 in 4)?", educationalNote: "In 2021, over 70,000 Americans died from synthetic opioids — mostly fentanyl. That's more than all US combat deaths in Vietnam, Korea, and Iraq combined." },
+        { difficulty: 2, question: "This DEA finding about counterfeit pills shows how dangerous the current drug supply is.", answer: "What is that 6 in 10 (60%) of seized fake pills contain a lethal dose of fentanyl?", educationalNote: "You're essentially playing Russian Roulette with 3-4 chambers loaded. Most people who've taken a fake pill and survived did so by luck — not because they knew what they were doing." },
+        { difficulty: 2, question: "This new and even more powerful synthetic opioid — already appearing in the US drug supply — is estimated to be 100 times stronger than fentanyl itself.", answer: "What is carfentanil (or nitazenes)?", educationalNote: "Carfentanil is so potent it was designed as a tranquilizer for ELEPHANTS. It's appearing in counterfeit pills. Narcan may not be enough — multiple doses may be needed." },
+        { difficulty: 2, question: "When giving Narcan to someone overdosing on fentanyl (vs. regular heroin), this is different about how many doses you may need.", answer: "What is you may need 2-3 or more doses, given every 2-3 minutes?", educationalNote: "Fentanyl's strength means standard naloxone doses are often insufficient. Always give more if the person isn't responding, and CALL 911 — Narcan wears off before fentanyl does." },
+        { difficulty: 2, question: "This practice — using drugs only with others present, keeping a phone accessible, and having Narcan nearby — can save lives in the current fentanyl environment.", answer: "What is harm reduction or safer use practices?", educationalNote: "Harm reduction doesn't mean approval of drug use — it means keeping people alive long enough to find recovery. Overdoses can't kill you if someone is there to intervene." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "This reason explains why people who have just been released from jail, prison, or a treatment program are at the HIGHEST risk of fentanyl overdose death.", answer: "What is that their tolerance has dropped during abstinence, so they use their old 'normal' amount and overdose?", educationalNote: "The first week after release from incarceration has 12 times the overdose risk of the general population. Tolerance resets during abstinence — the dose that used to be 'normal' becomes lethal." },
+        { difficulty: 3, question: "This fact about how fentanyl is distributed in counterfeit pills explains why one pill from the same batch can be safe while another is lethal.", answer: "What is that fentanyl isn't evenly mixed — 'hot spots' of concentrated fentanyl exist in the same pill or powder?", educationalNote: "This is called uneven distribution. Two identical-looking pills from the same batch can have wildly different fentanyl content. There's no 'safe' test dose — the safer choice is testing the whole supply." },
+        { difficulty: 3, question: "This state-level policy — making Narcan available without a prescription at pharmacies — is one of the most important public health tools for reducing overdose deaths.", answer: "What is standing-order or pharmacy naloxone access?", educationalNote: "In most US states, you can now walk into a pharmacy and buy Narcan without a prescription. Naloxone is often free with insurance. Accessibility saves lives." },
+        { difficulty: 3, question: "Fentanyl is primarily manufactured in this country and enters the US through mail and ports of entry, often pressed into pills that look identical to legitimate medications.", answer: "What is China (or Mexico for finished pills)?", educationalNote: "Fentanyl precursor chemicals come from China; finished pills often come from Mexican cartels. The supply chain is global — but the victims are local. Every community has been touched by this crisis." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This emerging harm reduction technology — fixed or mobile locations where people can check their drugs for fentanyl and other adulterants using advanced testing equipment — is called this.", answer: "What is a drug checking service or drug checking program?", educationalNote: "Going beyond basic test strips, these services can identify specific substances and concentrations. Several states now fund these. The goal is reducing uninformed risk, not promoting use." },
+        { difficulty: 4, question: "This particular pattern — where someone's prior overdoses are in their medical record and paramedics are reluctant to revive them — reveals a dangerous consequence of stigma in emergency medicine.", answer: "What is overdose fatigue or stigma-based refusal of care?", educationalNote: "Every person who overdoses deserves treatment — every time. Stigma literally kills people when providers are less aggressive with resuscitation. This is a documented problem that advocacy is working to change." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This pharmacological property of fentanyl — its high lipophilicity, meaning it binds to fatty tissues — explains why overdose victims can re-overdose hours after Narcan administration.", answer: "What is fentanyl's fat solubility and prolonged tissue binding (longer half-life than naloxone)?", educationalNote: "Fentanyl hides in body tissues and is slowly released back into the bloodstream. When Narcan wears off (30-90 min), fentanyl already re-releasing can cause repeat overdose. Hospital monitoring is essential." },
+        { difficulty: 5, question: "This public health strategy — providing take-home naloxone kits with training to laypeople, including those who use drugs — has been shown to reduce overdose mortality by this substantial percentage.", answer: "What is reducing overdose deaths by 50% or more in communities with high distribution?", educationalNote: "Community naloxone distribution is one of the most cost-effective public health interventions known. Training non-medical people to give Narcan has saved hundreds of thousands of lives worldwide." }
     ],
-    
-    "Myths & Facts": [
-        // EASY
-        { difficulty: 1, question: "TRUE OR FALSE: Addiction is a choice, not a disease.", answer: "What is FALSE? (Addiction is a chronic brain disease)" },
-        { difficulty: 1, question: "TRUE OR FALSE: You can tell if drugs are laced with fentanyl by looking at them.", answer: "What is FALSE? (You cannot detect fentanyl without test strips)" },
-        { difficulty: 1, question: "TRUE OR FALSE: Prescription pills from friends are safer than street drugs.", answer: "What is FALSE? (Many prescription pills are counterfeit)" },
-        { difficulty: 1, question: "TRUE OR FALSE: Most teens are using drugs regularly.", answer: "What is FALSE? (Only 6.5% of 12th graders use illicit drugs)" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "TRUE OR FALSE: Using drugs once or twice won't hurt you.", answer: "What is FALSE? (One use can be fatal with fentanyl)" },
-        { difficulty: 2, question: "TRUE OR FALSE: Addiction is a chronic brain disease, not a character flaw.", answer: "What is TRUE?" },
-        { difficulty: 2, question: "TRUE OR FALSE: Naloxone only works on heroin overdoses, not fentanyl.", answer: "What is FALSE? (Naloxone works on all opioids, though fentanyl may require more doses)" },
-        { difficulty: 2, question: "TRUE OR FALSE: Relapse means treatment failed.", answer: "What is FALSE? (Relapse is a common part of recovery that signals need to adjust the plan)" },
-        
-        // HARD
-        { difficulty: 3, question: "TRUE OR FALSE: Genetic factors play no role in addiction risk.", answer: "What is FALSE? (Biological children of alcoholic parents have 2-9 fold increased risk even when adopted)" },
-        { difficulty: 3, question: "TRUE OR FALSE: Harm reduction strategies increase crime and drug use in communities.", answer: "What is FALSE? (They do not increase crime or drug use)" },
-        { difficulty: 3, question: "TRUE OR FALSE: Medication-Assisted Treatment (MAT) is just replacing one drug with another.", answer: "What is FALSE? (MAT is evidence-based treatment that manages cravings and withdrawal safely)" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "TRUE OR FALSE: Environmental factors are more important than genetics in substance use risk.", answer: "What is BOTH? (Both genetic and environmental factors are equally crucial)" },
-        { difficulty: 4, question: "TRUE OR FALSE: Abstinence-based and harm reduction models are mutually exclusive.", answer: "What is FALSE? (They can be integrated as different points on a continuum of care)" },
-        
-        // EXPERT
-        { difficulty: 5, question: "TRUE OR FALSE: Parental attitudes toward drugs may be as important as actual parental use.", answer: "What is TRUE? (Adolescents who perceive parental permissiveness are more likely to use substances)" }
+
+    // ─── ROUND 2 CATEGORY 8 ─────────────────────────────────────────────────
+    "Understanding Addiction": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "This natural brain chemical — released when you eat good food, achieve a goal, or connect with someone — is the same one that drugs flood the brain with.", answer: "What is dopamine?", educationalNote: "Drugs don't create pleasure from nothing — they steal from your brain's own reward system. Over time, natural pleasures (food, connection, achievement) stop producing enough dopamine compared to the drug." },
+        { difficulty: 1, question: "This part of the brain — responsible for planning, judgment, and self-control — is still developing until about age 25 and is particularly damaged by drug use during teen years.", answer: "What is the prefrontal cortex?", educationalNote: "Your prefrontal cortex is literally under construction until age 25. That's not an insult — it's biology. Drugs damage this region more permanently during development than in adults." },
+        { difficulty: 1, question: "This word describes addiction as a long-lasting brain condition that requires ongoing management — similar to diabetes or asthma.", answer: "What is chronic (a chronic disease)?", educationalNote: "Like diabetes, addiction can be managed but not simply 'cured' with one treatment. People with addiction need ongoing support, just like someone with diabetes needs ongoing insulin management." },
+        { difficulty: 1, question: "The brain circuit most directly involved in addiction — which drives craving, reward, and compulsive drug-seeking — is called this.", answer: "What is the reward pathway (or mesolimbic system)?", educationalNote: "This system evolved to ensure we repeat survival behaviors (eating, bonding, reproducing). Drugs hijack it so effectively that drug-seeking can override food, relationships, and even self-preservation." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "Addiction develops through four key stages: experimentation, regular use, risky/heavy use, and this final stage.", answer: "What is dependence (or addiction/substance use disorder)?", educationalNote: "Most people who develop addiction don't plan to. Each stage feels manageable at the time. Recognizing which stage you're in is the first step to changing course." },
+        { difficulty: 2, question: "This happens to the brain's reward system with repeated drug use — meaning natural rewards feel less pleasurable and more drug is needed to feel normal.", answer: "What is downregulation of dopamine receptors (or decreased reward sensitivity)?", educationalNote: "The brain literally removes dopamine receptors when it's overwhelmed with drug-triggered dopamine. Then, without the drug, you feel depressed and anhedonic (unable to enjoy anything). This is why quitting feels so terrible at first." },
+        { difficulty: 2, question: "Addiction is described as compulsive drug use DESPITE this — meaning even when the person knows it's hurting them and wants to stop.", answer: "What is negative consequences (losing jobs, relationships, health, freedom)?", educationalNote: "The compulsive nature of addiction distinguishes it from habit or choice. Someone in addiction often hates what they're doing and desperately wants to stop, but their brain chemistry makes 'just stopping' extremely difficult." },
+        { difficulty: 2, question: "These three factors — genetic risk, environment (trauma, stress, peer influence), and age of first use — are the major predictors of who develops addiction.", answer: "What are genetics, environment, and age of first use?", educationalNote: "None of these alone causes addiction. But together, and especially with early use, the risk dramatically increases. None of this is destiny — understanding risk factors is how you make informed choices." },
+        { difficulty: 2, question: "This phenomenon explains why a recovered addict who has one drink or uses once can rapidly return to heavy use — despite years of sobriety.", answer: "What is sensitization (or conditioned craving)?", educationalNote: "The brain doesn't forget addiction pathways — it can instantly reactivate them. This is why 'just one' is so dangerous for people in recovery. The brain remembers, even when the person has been clean for years." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "This brain region — which processes emotion and threat — becomes overactive with chronic drug use, making former users hypersensitive to stress long after they stop using.", answer: "What is the amygdala?", educationalNote: "This is why people in recovery often seem 'on edge' or easily triggered. Their stress response system has been recalibrated by drug use. Trauma-informed care recognizes this and doesn't interpret it as weakness." },
+        { difficulty: 3, question: "This genetic influence on addiction — accounting for about 40-60% of risk — was demonstrated by twin studies showing identical twins had much higher concordance for addiction than fraternal twins.", answer: "What is heritability (genetic predisposition)?", educationalNote: "Studies of twins raised apart confirm genetics play a major role. But genes aren't destiny — environment and choices interact with genes. Having risk genes means being more careful, not being doomed." },
+        { difficulty: 3, question: "This factor — early childhood trauma, adverse experiences, or instability at home — increases addiction risk by changing how the developing brain's stress system functions.", answer: "What is adverse childhood experiences (ACEs)?", educationalNote: "ACEs include abuse, neglect, domestic violence, parental incarceration, and parental addiction. People with 4+ ACEs have dramatically higher rates of mental illness and substance use. This is NOT their fault." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This neurobiological phenomenon — where cues associated with drug use (people, places, smells) trigger intense craving — explains why environment changes are a key part of recovery.", answer: "What is conditioned cue reactivity (or Pavlovian drug conditioning)?", educationalNote: "Your brain creates powerful associations between drug use and surrounding cues. Walking past a former 'using spot' can trigger overwhelming craving years into recovery. This is why changing people, places, and things is recovery advice." },
+        { difficulty: 4, question: "The concept of addiction as a disorder of the frontal lobe — impaired impulse control, poor planning, and inability to delay gratification — is supported by research showing these brain scan differences.", answer: "What is reduced frontal lobe activity (on PET and fMRI scans) in people with addiction?", educationalNote: "Brain scans show real, measurable differences in the brains of people with addiction. This physical evidence helps combat the misconception that addiction is simply a choice or moral failing." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This bidirectional relationship — where trauma increases addiction risk AND addiction increases trauma exposure — creates a cycle that requires both to be treated simultaneously for recovery.", answer: "What is the trauma-addiction cycle?", educationalNote: "Treating addiction without addressing trauma often fails because the person returns to substances to cope with the trauma symptoms. Integrated trauma-informed addiction treatment has much better outcomes." },
+        { difficulty: 5, question: "This glutamate system dysregulation — caused by chronic drug use — explains why cravings can be triggered by stress, cues, or priming (using again) long after detox.", answer: "What is neuroadaptation in the glutamate system?", educationalNote: "Glutamate (the brain's main excitatory neurotransmitter) becomes dysregulated with addiction, creating hypersensitivity to drug cues and stress. Some medications target this system to reduce craving." }
     ],
-    
-    "Statistics & Research": [
-        // EASY
-        { difficulty: 1, question: "This percentage of children (1 in this number) live with at least one parent with substance use disorder.", answer: "What is 1 in 8 (or 12.3%)?" },
-        { difficulty: 1, question: "This many people worldwide were using drugs in 2022 according to UNODC.", answer: "What is 292 million people?" },
-        
-        // MEDIUM
-        { difficulty: 2, question: "This percentage increase in worldwide drug use occurred over the preceding decade.", answer: "What is 20%?" },
-        { difficulty: 2, question: "This many children were affected by methamphetamine lab incidents in 2004.", answer: "What is over 2,800 children?" },
-        { difficulty: 2, question: "This many children lost a parent to drug overdose between 2011 and 2021.", answer: "What is more than 321,000 children?" },
-        { difficulty: 2, question: "This estimated number of children have a parent with opioid use disorder.", answer: "What is 2.2 million children and adolescents?" },
-        
-        // HARD
-        { difficulty: 3, question: "Children of substance-abusing parents are this percentage more likely to require hospitalization.", answer: "What is 24% more likely?" },
-        { difficulty: 3, question: "These children have this percentage longer average hospital stays.", answer: "What is 29% longer?" },
-        { difficulty: 3, question: "This percentage of children removed from meth labs test positive for toxic chemicals.", answer: "What is 55%?" },
-        { difficulty: 3, question: "This percentage of cocaine overdose deaths involve fentanyl contamination.", answer: "What is 70%?" },
-        
-        // VERY HARD
-        { difficulty: 4, question: "This percentage of all overdose deaths involve multiple substances.", answer: "What is 50%?" },
-        { difficulty: 4, question: "Alcohol is involved in this percentage of drug overdose emergency room visits.", answer: "What is 22%?" },
-        { difficulty: 4, question: "This percentage of California high school seniors mixed multiple drugs in the past year.", answer: "What is 29%?" },
-        
-        // EXPERT
-        { difficulty: 5, question: "Recent studies indicate this percentage or number of children may have parents with substance use disorder.", answer: "What is 25% or nearly 19 million children?" },
-        { difficulty: 5, question: "Children who experience abuse have this fold higher likelihood of developing substance use disorders.", answer: "What is 4.3-fold higher?" }
+
+    // ─── ROUND 2 CATEGORY 9 ─────────────────────────────────────────────────
+    "Treatment, Recovery & Getting Help": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "This national phone number — available 24/7, free, and confidential — connects you to substance use and mental health support.", answer: "What is 988 (Suicide and Crisis Lifeline) or 1-800-662-HELP (SAMHSA)?", educationalNote: "These lines aren't just for emergencies — you can call to ask for advice, information, or help for a friend. No judgment, no cost, real people who care." },
+        { difficulty: 1, question: "This medically supervised process — the first stage of treatment — helps the body safely eliminate drugs while managing dangerous withdrawal symptoms.", answer: "What is detox (detoxification)?", educationalNote: "Detox is not treatment — it's the beginning. Without follow-up treatment, most people relapse within weeks. Detox is step one, not the whole journey." },
+        { difficulty: 1, question: "This type of counseling — where you talk regularly with a trained therapist about your thoughts, feelings, and behavior — is a core part of most addiction treatment.", answer: "What is therapy (or psychotherapy/counseling)?", educationalNote: "Therapy isn't weakness — it's training. Learning how your mind works, what triggers you, and how to respond differently is a skill that transforms lives." },
+        { difficulty: 1, question: "These peer support groups — founded in 1935 and 1953 — use a 12-step approach and connect people with others who have lived experience with recovery.", answer: "What are Alcoholics Anonymous (AA) and Narcotics Anonymous (NA)?", educationalNote: "12-step programs have helped millions, though they're not the only path. The power of connection with others who truly understand is immense." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "This evidence-based therapy — teaching people to identify and change thoughts that lead to drug use, while building skills to cope with triggers — is the most widely used in addiction treatment.", answer: "What is Cognitive Behavioral Therapy (CBT)?", educationalNote: "CBT teaches you how your thoughts affect your feelings and actions. Noticing a thought pattern BEFORE it leads to using is a skill you can learn — and it works." },
+        { difficulty: 2, question: "This approach to treatment — using FDA-approved medications like Suboxone or methadone alongside therapy — cuts overdose deaths by up to 50% and is the gold standard for opioid use disorder.", answer: "What is Medication-Assisted Treatment (MAT)?", educationalNote: "MAT is evidence-based, not 'cheating.' People on MAT live longer, stay employed, and raise their families. Stigma against MAT has cost thousands of lives — it deserves the same respect as any other medical treatment." },
+        { difficulty: 2, question: "This philosophy of care — meeting people where they are, focusing on reducing harm even if they aren't ready to quit — is called this and includes distributing Narcan and clean needles.", answer: "What is harm reduction?", educationalNote: "Harm reduction keeps people alive until they're ready for more. You can't recover if you're dead. It's not giving up on someone — it's keeping the door to recovery open." },
+        { difficulty: 2, question: "This type of treatment allows a person to live at home or in a supervised residence while attending sessions during the day — making it possible to work, go to school, or maintain family connections.", answer: "What is outpatient treatment (IOP or OP)?", educationalNote: "Not everyone needs residential treatment. Outpatient programs let people keep their lives while getting help. What matters is intensity of support matched to severity of need." },
+        { difficulty: 2, question: "This important fact about relapse — which happens to 40-60% of people in recovery — reframes what many people see as 'failure' into something more accurate.", answer: "What is that relapse rates for addiction are similar to rates for diabetes, asthma, and hypertension — it signals a need to adjust the plan, not give up?", educationalNote: "Relapse is painful, but it is not the end. Most people who achieve lasting recovery have relapsed multiple times. Every attempt at recovery matters and builds toward the next one." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "Depression symptoms in teens drop from 49% before treatment to this percentage after successful substance use treatment — showing how connected mental health and substance use really are.", answer: "What is 16%?", educationalNote: "Often, when the substance use is addressed, the mental health symptoms improve dramatically. This is why integrated treatment works better than treating them separately." },
+        { difficulty: 3, question: "This SAMHSA online tool — at FindTreatment.gov — helps anyone search for substance use treatment programs by location, type, and payment options including free care.", answer: "What is SAMHSA's Treatment Locator?", educationalNote: "No insurance? No money? You can STILL access treatment. There are publicly funded treatment slots available. The Treatment Locator helps you find them near you." },
+        { difficulty: 3, question: "This government health insurance program — covering low-income individuals — pays for substance use and mental health treatment in most states, often with no cost to the patient.", answer: "What is Medicaid?", educationalNote: "If you're in foster care or a group home, you very likely have Medicaid coverage that includes behavioral health services. You have a right to these services." },
+        { difficulty: 3, question: "Research shows this type of support — from people who have lived experience in recovery — leads to higher engagement in treatment and higher satisfaction than professional support alone.", answer: "What is peer support (from peer recovery coaches or mentors)?", educationalNote: "Hearing 'I've been where you are' from someone who truly has — not from a textbook — changes everything. Peer support workers are now recognized professionals in many states." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This evidence-based approach to talking to someone about getting treatment — motivating change without confrontation or judgment — is used by counselors and can be used by anyone.", answer: "What is Motivational Interviewing (MI)?", educationalNote: "MI is built on empathy and respect. Instead of telling someone they should change, you ask questions that help THEM discover their own reasons to change. It's dramatically more effective than lecturing." },
+        { difficulty: 4, question: "Young people in foster care and group home settings have this legal right regarding confidential mental health and substance use treatment — even without parental consent — in most states.", answer: "What is the right to consent to their own treatment (at age 12-13 depending on state)?", educationalNote: "Most states allow minors to consent to substance use and mental health treatment independently. This is to remove barriers to care. You have rights — knowing them matters." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "SAMHSA defines recovery as this process — describing not just sobriety but a whole-life transformation.", answer: "What is 'a process of change through which individuals improve their health and wellness, live a self-directed life, and strive to reach their full potential'?", educationalNote: "Recovery isn't just 'not using.' It's building a life worth living — health, housing, purpose, connection. The four dimensions of SAMHSA's recovery model reflect this: Health, Home, Purpose, Community." },
+        { difficulty: 5, question: "This approach — simultaneously treating substance use disorder AND trauma in an integrated program — has far better outcomes than treating each separately, because of their deeply intertwined neurobiology.", answer: "What is integrated trauma-informed care (or dual-diagnosis treatment)?", educationalNote: "For youth who've experienced significant trauma, treating only the addiction usually fails because the trauma drives the use. The healing has to address the root as well as the branch." }
+    ],
+
+    // ─── ROUND 2 CATEGORY 10 ─────────────────────────────────────────────────
+    "Legal Consequences: Your Future Matters": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "This crime — operating a vehicle while impaired by alcohol or drugs — carries automatic license suspension, fines, and possible jail time.", answer: "What is DUI or DWI?", educationalNote: "A DUI conviction follows you for years. In many states, it raises your insurance premiums by hundreds of dollars per month and can disqualify you from jobs that require driving." },
+        { difficulty: 1, question: "This government agency — the Drug Enforcement Administration — is the primary federal agency enforcing drug laws in the US.", answer: "What is the DEA?", educationalNote: "Drug laws are enforced at federal, state, and local levels simultaneously. Being caught with drugs can result in prosecution by ANY of these levels — sometimes all three." },
+        { difficulty: 1, question: "This type of criminal record — created when someone is convicted of a crime — can follow a person for life and affect jobs, housing, college, and custody of children.", answer: "What is a criminal record or conviction?", educationalNote: "A conviction doesn't end when you're released. The invisible sentence — discrimination in hiring, housing, and education — can last decades. This is called the collateral consequences of criminal conviction." },
+        { difficulty: 1, question: "Possessing ANY amount of this drug — even residue — is a felony in most US states.", answer: "What is fentanyl?", educationalNote: "Fentanyl possession laws are strict because of its lethality. In some states, selling fentanyl that causes death can result in a murder charge." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "A drug conviction can make you ineligible for this federal financial assistance — making college much harder or impossible to afford.", answer: "What is federal student aid (FAFSA)?", educationalNote: "A drug conviction can block you from Pell Grants and federal loans for years. This is a consequence many teens don't know about until it's too late. Your education and future are at stake." },
+        { difficulty: 2, question: "Selling drugs within this distance from a school, park, or playground typically DOUBLES the criminal penalties.", answer: "What is 1,000 feet?", educationalNote: "Enhanced penalty zones exist in most states. If you're living in an urban environment, you might be within 1,000 feet of a school almost everywhere you go. This affects sentencing dramatically." },
+        { difficulty: 2, question: "Being caught with drugs while in a group home or residential program can result in this immediate consequence.", answer: "What is placement change, discharge, or probation violation?", educationalNote: "If you're in a residential placement, drug possession doesn't just mean criminal charges — it means losing your housing, your program relationships, and potentially facing a more restrictive placement." },
+        { difficulty: 2, question: "For teens in the juvenile justice system, drug-related violations can result in this consequence that adult offenders don't face.", answer: "What is being tried as an adult (transferred to adult court)?", educationalNote: "Youth with prior drug offenses who reoffend are increasingly being tried in adult court. Adult convictions — unlike juvenile records — follow you permanently in many situations." },
+        { difficulty: 2, question: "A DUI conviction typically requires this time period of license suspension for teens — longer than for adult first offenders in many states.", answer: "What is one year (or until age 18, whichever is longer)?", educationalNote: "A year without a license limits your ability to get jobs, attend school consistently, and participate in activities. It's not just an inconvenience — it's a barrier to building your future." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "This federal law — passed in 1986 — created sentencing disparities that resulted in dramatically harsher punishment for crack cocaine versus powder cocaine, affecting communities of color disproportionately.", answer: "What is the Anti-Drug Abuse Act (or crack/powder cocaine sentencing disparity)?", educationalNote: "The disparity meant 5g of crack triggered the same sentence as 500g of powder cocaine. This was narrowed (but not eliminated) by the Fair Sentencing Act of 2010. Drug policy and racial equity are deeply connected." },
+        { difficulty: 3, question: "This legal protection — available in most states — protects people from drug prosecution when they call 911 for an overdose, because legislators recognized the fear of arrest was causing people to die.", answer: "What is the Good Samaritan law (or Medical Amnesty law)?", educationalNote: "Good Samaritan laws vary by state. Most protect the caller AND the person overdosing from arrest for simple possession. Knowing your state's law could literally be the difference between calling for help and not." },
+        { difficulty: 3, question: "Possession of heroin with intent to distribute near a school, resulting in a first-degree felony conviction, can result in this type of long-term consequence to professional licensing.", answer: "What is permanent disqualification from licensing in fields like healthcare, law, education, and social work?", educationalNote: "Professional licensing boards check criminal records. Many drug felonies permanently bar people from becoming nurses, teachers, social workers, or lawyers — even after fully serving their sentence." },
+        { difficulty: 3, question: "Youth who are arrested for drug offenses show this significant increase in likelihood compared to non-arrested peers.", answer: "What is dramatically higher likelihood of adult arrest and incarceration?", educationalNote: "Early criminal justice involvement often creates a path, not just a record. The justice system itself — through disrupted schooling, stigma, and criminal networks — can increase future offending." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This legal concept — where drug trafficking charges can be brought even against users who share drugs that lead to a friend's overdose death — is increasingly used to prosecute young people.", answer: "What is drug-induced homicide laws?", educationalNote: "Over 25 states have used these laws to charge people with manslaughter or murder when the drugs they gave (or sold) to a friend caused that friend's death. This includes cases between close friends." },
+        { difficulty: 4, question: "These federal housing regulations allow public housing authorities to evict ENTIRE FAMILIES if any household member is arrested for a drug offense — a policy that has made families homeless.", answer: "What is 'one strike' public housing drug policies?", educationalNote: "This policy means one person's drug arrest can leave their whole family homeless. It's been widely criticized as counterproductive to recovery and has been challenged in court. Many housing authorities have reformed it." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This 2018 federal law — the First Step Act — modified sentencing for drug offenses and made thousands of previously sentenced people eligible for early release or sentence reduction.", answer: "What is the First Step Act?", educationalNote: "Criminal justice reform is ongoing. Laws that seemed permanent are changing. Advocacy, voting, and civic engagement directly affect the laws that shape people's lives — including yours." },
+        { difficulty: 5, question: "Research shows that incarceration for drug offenses — compared to treatment — results in higher rates of this outcome after release.", answer: "What is recidivism (re-offending and re-incarceration) AND continued drug use?", educationalNote: "Prisons don't typically provide effective treatment. Incarcerated individuals often return to the same community conditions that fueled their use, without the coping skills to navigate differently. Treatment works better." }
+    ],
+
+    // ─── ROUND 2 CATEGORY 11 ─────────────────────────────────────────────────
+    "Family Impact & Growing Up Around Addiction": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "About this fraction of American children — 1 in this number — lives with at least one parent with a substance use disorder.", answer: "What is 1 in 8 (about 12% or nearly 9 million children)?", educationalNote: "You are not alone. Millions of young people are in exactly the situation you may have experienced. Growing up around addiction is not your fault, and it doesn't determine your future." },
+        { difficulty: 1, question: "These traumatic childhood experiences — including living with a parent who uses drugs or alcohol, domestic violence, or abuse — are called this by researchers.", answer: "What are Adverse Childhood Experiences (ACEs)?", educationalNote: "ACEs research shows that early adversity affects brain development, health, and behavior for decades. But resilience is real — support, connection, and trauma-informed care can dramatically change outcomes." },
+        { difficulty: 1, question: "This term describes the false role some children in addicted households take on — acting as the parent, caretaker, or emotional support for a parent.", answer: "What is parentification (or role reversal)?", educationalNote: "Taking care of a parent who should be taking care of you is deeply painful and confusing. It can leave lasting effects on your ability to trust, set boundaries, and feel safe. This was not your job." },
+        { difficulty: 1, question: "Children of parents with alcohol use disorder have this higher risk of developing addiction themselves — due to both genes AND environment.", answer: "What is 2-9 times higher risk?", educationalNote: "This isn't fate. Knowing you have higher biological risk is powerful information — it means you have even stronger reasons to be cautious, and means you deserve extra support." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "More than this many children lost a parent to drug overdose between 2011 and 2021 — a traumatic form of loss that creates unique grief challenges.", answer: "What is 321,000 children?", educationalNote: "Overdose death of a parent is a devastating, stigmatized loss. Grief after addiction-related death is often complicated by anger, shame, and lack of community support. This pain deserves acknowledgment." },
+        { difficulty: 2, question: "Growing up in a home with addiction exposes children to this heightened vulnerability for academic, behavioral, and mental health challenges.", answer: "What is higher rates of school problems, mental health disorders, behavioral issues, and social difficulties?", educationalNote: "This is NOT a moral judgment — these are documented effects of a difficult environment on developing minds and bodies. Identifying the cause helps find the solution." },
+        { difficulty: 2, question: "Children in homes affected by parental addiction are taught — directly or indirectly — this destructive family rule that isolates them and prevents them from getting help.", answer: "What is 'Don't talk, don't trust, don't feel' (or keeping the family secret)?", educationalNote: "Breaking the family rule by talking to a counselor, teacher, or trusted adult is one of the most important and brave things a young person can do. Secrets keep people sick." },
+        { difficulty: 2, question: "These common psychological patterns — including harsh self-judgment, difficulty trusting others, compulsive people-pleasing, and fear of losing control — are often seen in adult children of addicts.", answer: "What are maladaptive coping behaviors (or ACOA characteristics)?", educationalNote: "These patterns were SURVIVAL SKILLS in a chaotic environment. They're not character flaws. In therapy, people learn to understand these patterns and build new, healthier ones." },
+        { difficulty: 2, question: "This estimate suggests that 25% of American children — about 19 million — may have a parent with a substance use disorder, though the real number may be higher.", answer: "What is 19 million children (or 1 in 4)?", educationalNote: "Official statistics likely undercount this because of stigma and under-reporting. If nearly 1 in 4 children has a parent with addiction, this is not a rare or shameful experience — it's a community health crisis." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "Children who experienced abuse have this fold higher likelihood of developing their own substance use disorders compared to children without abuse history.", answer: "What is 4.3 times higher risk?", educationalNote: "Abuse and addiction are deeply connected because trauma changes how the brain handles stress, pleasure, and risk — creating the very conditions that make substances appealing as coping tools." },
+        { difficulty: 3, question: "The cycle of addiction — where children of addicts become addicts themselves — can be BROKEN by these key factors.", answer: "What are: trauma-informed care, stable relationships with caring adults, mental health support, and building coping skills?", educationalNote: "The cycle is real — but it is not inevitable. Thousands of people with every risk factor imaginable have broken the cycle. Awareness, help, and support change outcomes." },
+        { difficulty: 3, question: "This therapeutic approach — specifically designed for adult children of alcoholics and addicts, addressing the unique psychological patterns that develop in addicted families — is called this.", answer: "What is Adult Children of Alcoholics (ACOA) therapy or family systems therapy?", educationalNote: "You don't have to have grown up and become an addict yourself for this to affect you. The effects of growing up in addiction are real, treatable, and not your fault." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "This neurobiological mechanism explains why children raised in high-stress environments (like homes with addiction) show altered stress hormone responses that persist into adulthood.", answer: "What is dysregulation of the HPA axis (hypothalamic-pituitary-adrenal stress system)?", educationalNote: "Chronic early stress literally resets the body's stress thermostat. This means stress feels more intense and overwhelming for longer. It's physiology — not weakness. And it can be healed with treatment." },
+        { difficulty: 4, question: "Children exposed to parental addiction show greater activation of this brain structure — involved in fear and threat detection — which may explain heightened anxiety and hypervigilance that persists into adulthood.", answer: "What is the amygdala?", educationalNote: "Being on constant alert as a child — watching for signs of a parent's next episode — literally trains the brain to stay in threat-detection mode. Recognizing this is the first step toward healing it." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "This therapeutic framework — viewing a client's challenges through the lens of 'What happened to you?' rather than 'What's wrong with you?' — is the foundation of trauma-informed addiction treatment.", answer: "What is trauma-informed care (TIC)?", educationalNote: "This reframe changes everything. Behaviors that look like defiance, manipulation, or weakness are often survival adaptations to impossible situations. Trauma-informed care responds to the root — not just the symptom." },
+        { difficulty: 5, question: "Research shows that youth with four or more ACEs are this many times more likely to develop substance use problems than youth with no ACEs.", answer: "What is 7 times more likely?", educationalNote: "ACEs are powerful predictors — but so are protective factors. Having even one stable, caring adult relationship can cut the risk dramatically. Every person in a supportive role matters enormously." }
+    ],
+
+    // ─── ROUND 2 CATEGORY 12 ─────────────────────────────────────────────────
+    "Decision Making & Real-Life Scenarios": [
+        // EASY (difficulty 1)
+        { difficulty: 1, question: "Your roommate says 'try this, it's just a pill, it'll chill you out.' The safest response is this.", answer: "What is saying no — any pill from an unknown source could contain fentanyl?", educationalNote: "6 in 10 counterfeit pills contain a lethal dose of fentanyl. 'Just a pill' has killed thousands of teens. Your roommate may not know what's actually in it — and their life may be at risk too." },
+        { difficulty: 1, question: "At a party, you notice your friend is slumped over, not responding, and their lips look bluish. The FIRST thing to do is this.", answer: "What is call 911 immediately (and give Narcan if available)?", educationalNote: "Blue lips mean oxygen deprivation. Every minute without oxygen causes brain damage. Don't waste time trying to wake them up first — call 911 while you or someone else gives Narcan." },
+        { difficulty: 1, question: "Someone pressures you to use by saying 'you're scared, you can't handle it.' This peer pressure technique is called this.", answer: "What is a taunt or challenge (daring/challenging your manhood or courage)?", educationalNote: "This is a manipulation tactic. Real strength is knowing your own mind and not being controlled by what someone else thinks of you. The person who needs your approval to feel cool isn't your friend." },
+        { difficulty: 1, question: "You're feeling really stressed, angry, or sad about something. Before reaching for a substance, these are healthy options.", answer: "What are: exercise, talking to someone you trust, journaling, music, deep breathing, or taking a walk?", educationalNote: "Substances temporarily mask feelings but make them worse long-term. The goal of coping skills is not to eliminate the feeling — it's to get through it without making your situation worse." },
+        { difficulty: 1, question: "A friend tells you they've been using every day and they need it to feel normal. This is a sign of this, and the right response is this.", answer: "What is dependence — and the right response is encouraging them to talk to a counselor or staff member?", educationalNote: "Physical dependence means their brain and body have adapted to the substance. Stopping suddenly without help can be dangerous for some drugs. Helping them get professional support could save their life." },
+        // MEDIUM (difficulty 2)
+        { difficulty: 2, question: "You're offered alcohol at a gathering where 'everyone seems to be drinking.' Before accepting, remembering this fact about teen drug and alcohol use can help you make a clearer decision.", answer: "What is that most teens (over 93% of high schoolers) are NOT regular drug users — despite appearances?", educationalNote: "The pressure to drink or use drugs often comes from the PERCEPTION that everyone does it. Knowing the real numbers helps cut through the illusion. You're not the odd one out for not using." },
+        { difficulty: 2, question: "You're at a new group home and some of the guys are pressuring you to smoke weed with them. A non-confrontational way to decline that doesn't damage your social standing is this.", answer: "What is using an excuse ('I'm on probation/drug testing/medication') or simply 'I'm good' said confidently without explanation?", educationalNote: "You don't owe anyone an explanation. A confident, brief decline is often more respected than a long justification. Having a ready response prevents the hesitation that signals you can be pressured." },
+        { difficulty: 2, question: "A staff member at your group home notices you've been acting different and asks if everything is okay. The most helpful response to your long-term wellbeing is this.", answer: "What is being honest, even if it's scary?", educationalNote: "Staff are there to help, not just enforce rules. Sharing that you're struggling — with substances, stress, peer pressure — is how you get support BEFORE things get worse. Asking for help is strength." },
+        { difficulty: 2, question: "Your friend asks to borrow money 'just this once' but you suspect it's for drugs. The most supportive response is this.", answer: "What is refusing to give money (not enabling) while offering to help them get real support?", educationalNote: "Giving money to someone who's actively using isn't helping — it's enabling. You can be compassionate without funding the addiction. Offering to help them access real support is genuine care." },
+        { difficulty: 2, question: "You used to use drugs but you've been clean for a few months. A 'friend' says 'one time won't hurt, you can handle it now.' This is dangerous because of this.", answer: "What is that tolerance resets during abstinence, so your 'normal' dose can now cause overdose?", educationalNote: "This is the most dangerous moment in recovery. Most fatal overdoses happen in people who have been recently clean — because their tolerance has dropped but they use their previous amount." },
+        // HARD (difficulty 3)
+        { difficulty: 3, question: "You find your roommate unconscious with drug paraphernalia nearby and you're afraid of getting in trouble. This legal protection means you can still safely call 911.", answer: "What is the Good Samaritan law?", educationalNote: "Most states protect callers from drug prosecution when they call 911 for an overdose. Your roommate's life is worth the risk. Not calling is the decision you won't be able to take back." },
+        { difficulty: 3, question: "A peer pressures you by saying 'if you don't do this with us, you're not really part of the group.' This type of social pressure is especially powerful because of this reason.", answer: "What is that belonging and acceptance are core human needs — especially for teens and young people?", educationalNote: "The desire to belong is real and powerful — not weakness. Peer pressure works because isolation is genuinely painful. Building connection with sober peers and supportive adults meets this need safely." },
+        { difficulty: 3, question: "You're really stressed about your future, feel like nothing matters, and a peer offers you something to make you forget for a while. The most important thing to do in this moment is this.", answer: "What is talk to someone you trust — a staff member, counselor, or call 988?", educationalNote: "The feeling that nothing matters can be a sign of depression that deserves real care — not just numbing. Substances temporarily suppress those feelings and make depression much worse. You deserve actual help." },
+        { difficulty: 3, question: "Someone you care about is dealing drugs and asks you to hold something for them or be a lookout. The legal consequence you need to understand about agreeing is this.", answer: "What is that you can be charged with the SAME drug crime as the dealer — including trafficking and distribution?", educationalNote: "Drug conspiracy laws are broad. 'Holding' drugs for someone makes you a possessor. Being a lookout makes you part of a conspiracy. This isn't worth the loyalty — to anyone." },
+        // VERY HARD (difficulty 4)
+        { difficulty: 4, question: "You want to help a friend who's using, but everything you say pushes them away. This communication technique — asking open-ended questions and reflecting what they say without judgment — is more effective.", answer: "What is Motivational Interviewing (or empathetic, non-judgmental listening)?", educationalNote: "Lectures and ultimatums rarely work. People change when THEY identify their own reasons to change. Being a good listener who asks good questions can plant seeds that grow into real change." },
+        { difficulty: 4, question: "You've been clean for six months and you're feeling really good — almost too confident that you've got this under control. Recovery experts call this dangerous state of overconfidence this.", answer: "What is complacency (or pink cloud syndrome)?", educationalNote: "Feeling great in early recovery is wonderful — but complacency is one of the top triggers of relapse. Staying connected to your support system, your meetings, and your counselor matters most when you feel like you don't need it." },
+        // EXPERT (difficulty 5)
+        { difficulty: 5, question: "A group home peer in active addiction tells you he doesn't have a problem. Understanding this psychological defense mechanism — where someone is unable to see or acknowledge their addiction — can help you respond with more compassion.", answer: "What is denial?", educationalNote: "Denial isn't lying — it's a genuine psychological protection. The brain often cannot fully recognize a problem that would require overwhelming change to address. Meeting people with patience rather than confrontation is more effective." },
+        { difficulty: 5, question: "Research on social influence shows that one of the MOST effective ways to help a peer choose not to use drugs is this — rather than direct advice-giving.", answer: "What is modeling recovery and healthy behavior yourself (being a living example)?", educationalNote: "Seeing someone their own age making it without substances is one of the most powerful influences on young people's choices. Your recovery, your choices, and your presence can change someone else's life simply by showing it's possible." }
     ]
 };
 
-// Function to get questions by difficulty level for each round
+// ─── HELPER FUNCTIONS ────────────────────────────────────────────────────────
+
 function getQuestionsByDifficulty(category, difficulty) {
     if (!questionBank[category]) return [];
     return questionBank[category].filter(q => q.difficulty === difficulty);
 }
 
-// Function to randomly select questions for a game ensuring variety
+// Round 1 uses the first 6 categories; Round 2 uses the last 6
+const ROUND1_CATEGORIES = Object.keys(questionBank).slice(0, 6);
+const ROUND2_CATEGORIES = Object.keys(questionBank).slice(6, 12);
+
 function generateGameQuestions(round = 1) {
-    const categories = Object.keys(questionBank);
+    const categories = round === 1 ? ROUND1_CATEGORIES : ROUND2_CATEGORIES;
     const gameQuestions = {};
-    
-    // Determine point values based on round
-    const pointValues = round === 1 
-        ? [200, 400, 600, 800, 1000] 
+
+    const pointValues = round === 1
+        ? [200, 400, 600, 800, 1000]
         : [400, 800, 1200, 1600, 2000];
-    
-    // Difficulty mapping: point value to difficulty level
+
     const difficultyMap = {
-        200: 1,   // Easy
-        400: 2,   // Medium  
-        600: 3,   // Hard
-        800: 3,   // Hard
-        1000: 4,  // Very Hard
-        1200: 3,  // Hard
-        1600: 4,  // Very Hard
-        2000: 5   // Expert
+        200: 1, 400: 2, 600: 3, 800: 3, 1000: 4,
+        1200: 3, 1600: 4, 2000: 5
     };
-    
+
     categories.forEach(category => {
         gameQuestions[category] = [];
-        
-        pointValues.forEach((points, index) => {
+        pointValues.forEach(points => {
             const difficulty = difficultyMap[points];
-            const availableQuestions = getQuestionsByDifficulty(category, difficulty);
-            
-            if (availableQuestions.length > 0) {
-                // Randomly select a question from available options
-                const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                const selectedQuestion = availableQuestions[randomIndex];
-                
-                // Randomly assign some questions as Daily Doubles (1-2 per round)
-                const isDailyDouble = Math.random() < 0.05; // 5% chance
-                
+            const available = getQuestionsByDifficulty(category, difficulty);
+
+            if (available.length > 0) {
+                const selected = available[Math.floor(Math.random() * available.length)];
                 gameQuestions[category].push({
-                    points: points,
-                    question: selectedQuestion.question,
-                    answer: selectedQuestion.answer,
-                    dailyDouble: isDailyDouble
-                });
-            } else {
-                // Fallback if no questions at that difficulty
-                gameQuestions[category].push({
-                    points: points,
-                    question: `Question for ${points} points in ${category}`,
-                    answer: "Answer needed",
+                    points,
+                    question: selected.question,
+                    answer: selected.answer,
+                    educationalNote: selected.educationalNote || '',
                     dailyDouble: false
                 });
+            } else {
+                // Fallback: grab any question from this category
+                const all = questionBank[category] || [];
+                if (all.length > 0) {
+                    const selected = all[Math.floor(Math.random() * all.length)];
+                    gameQuestions[category].push({
+                        points,
+                        question: selected.question,
+                        answer: selected.answer,
+                        educationalNote: selected.educationalNote || '',
+                        dailyDouble: false
+                    });
+                }
             }
         });
     });
-    
-    // Ensure we have exactly 2 Daily Doubles per round
+
     ensureTwoDailyDoubles(gameQuestions);
-    
     return gameQuestions;
 }
 
-// Helper function to ensure exactly 2 Daily Doubles per round
 function ensureTwoDailyDoubles(gameQuestions) {
     const categories = Object.keys(gameQuestions);
-    let dailyDoubleCount = 0;
-    
-    // Count existing Daily Doubles
-    categories.forEach(category => {
-        gameQuestions[category].forEach(q => {
-            if (q.dailyDouble) dailyDoubleCount++;
-        });
-    });
-    
-    // Remove excess Daily Doubles
-    while (dailyDoubleCount > 2) {
-        const randomCat = categories[Math.floor(Math.random() * categories.length)];
-        const ddQuestion = gameQuestions[randomCat].find(q => q.dailyDouble);
-        if (ddQuestion) {
-            ddQuestion.dailyDouble = false;
-            dailyDoubleCount--;
-        }
+    let ddCount = categories.reduce((count, cat) =>
+        count + gameQuestions[cat].filter(q => q.dailyDouble).length, 0);
+
+    while (ddCount > 2) {
+        const cat = categories[Math.floor(Math.random() * categories.length)];
+        const ddQ = gameQuestions[cat].find(q => q.dailyDouble);
+        if (ddQ) { ddQ.dailyDouble = false; ddCount--; }
     }
-    
-    // Add Daily Doubles if needed
-    while (dailyDoubleCount < 2) {
-        const randomCat = categories[Math.floor(Math.random() * categories.length)];
-        const randomQuestionIndex = Math.floor(Math.random() * gameQuestions[randomCat].length);
-        if (!gameQuestions[randomCat][randomQuestionIndex].dailyDouble) {
-            gameQuestions[randomCat][randomQuestionIndex].dailyDouble = true;
-            dailyDoubleCount++;
+    while (ddCount < 2) {
+        const cat = categories[Math.floor(Math.random() * categories.length)];
+        const qIdx = Math.floor(Math.random() * gameQuestions[cat].length);
+        if (!gameQuestions[cat][qIdx].dailyDouble) {
+            gameQuestions[cat][qIdx].dailyDouble = true;
+            ddCount++;
         }
     }
 }
 
-// Export functions for use in game
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        questionBank,
-        getQuestionsByDifficulty,
-        generateGameQuestions
-    };
+    module.exports = { questionBank, ROUND1_CATEGORIES, ROUND2_CATEGORIES,
+                       getQuestionsByDifficulty, generateGameQuestions };
 }
