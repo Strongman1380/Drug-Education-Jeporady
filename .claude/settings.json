@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)"
+    ],
+    "additionalDirectories": [
+      "/Users/brandonhinrichs/.claude/projects/-Users-brandonhinrichs-Local-Repositories-Games-Drug-Education-Jeoprody/memory"
+    ]
+  }
+}

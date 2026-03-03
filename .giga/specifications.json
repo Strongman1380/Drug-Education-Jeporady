@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview with game architecture, educational integration, and core components"
+  },
+  {
+    "fileName": "scoring-algorithms.mdc",
+    "description": "Detailed documentation of scoring calculations, Daily Double wager rules, and point distribution algorithms"
+  },
+  {
+    "fileName": "question-bank-model.mdc",
+    "description": "Documentation of question data structure, difficulty scaling system, and category organization model"
+  },
+  {
+    "fileName": "game-flow-control.mdc",
+    "description": "Documentation of game progression logic, board control mechanisms, and round transition algorithms"
+  },
+  {
+    "fileName": "educational-content-model.mdc",
+    "description": "Documentation of educational content integration, difficulty progression mapping, and content validation systems"
+  }
+]
