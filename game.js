@@ -12,7 +12,9 @@ class JeopardyGame {
         this.timer = null;
         this.timeRemaining = 30;
         this.gameData = null; // Will hold dynamically generated questions
-        
+        this.streaks = {}; // teamId -> consecutive correct answer count
+        this.confettiAnimFrame = null;
+
         this.initializeEventListeners();
     }
     
@@ -69,6 +71,9 @@ class JeopardyGame {
             this.teams.push({ name: team3Name, score: 0, id: 3 });
         }
         
+        // Reset streaks for new game
+        this.streaks = {};
+
         // Generate fresh questions for this game
         this.generateFreshGameData();
         
@@ -254,30 +259,25 @@ class JeopardyGame {
     }
     
     showDailyDoubleSection() {
-        const dailyDoubleSection = document.getElementById('daily-double-section');
-        const maxWagerElement = document.getElementById('max-wager');
-        const wagerInput = document.getElementById('wager-input');
         const controllingTeamDD = document.getElementById('controlling-team-dd');
-        
-        // Show which team has control
         controllingTeamDD.textContent = this.teams[this.controllingTeam].name;
-        
-        // Calculate max wager based on Jeopardy rules:
-        // Max of current score or highest value on the board
+
         const controllingTeamScore = this.teams[this.controllingTeam].score;
         const highestBoardValue = this.currentRound === 1 ? 1000 : 2000;
         const maxWager = Math.max(controllingTeamScore, highestBoardValue);
-        
-        maxWagerElement.textContent = `$${maxWager.toLocaleString()}`;
+
+        document.getElementById('max-wager').textContent = `$${maxWager.toLocaleString()}`;
+        const wagerInput = document.getElementById('wager-input');
         wagerInput.max = maxWager;
         wagerInput.min = 5;
         wagerInput.value = Math.min(this.currentQuestion.points, maxWager);
-        
-        dailyDoubleSection.classList.remove('hidden');
-        document.getElementById('reveal-answer').classList.add('hidden');
-        
-        // Start timer for Daily Double wager
-        this.startTimer(30);
+
+        // Dramatic full-screen reveal first, then show wager section
+        this.showDailyDoubleReveal(() => {
+            document.getElementById('daily-double-section').classList.remove('hidden');
+            document.getElementById('reveal-answer').classList.add('hidden');
+            this.startTimer(30);
+        });
     }
     
     submitWager() {
@@ -359,15 +359,160 @@ class JeopardyGame {
     scoreTeam(teamId, points) {
         const team = this.teams.find(t => t.id === teamId);
         if (team) {
+            const correct = points > 0;
             team.score += points;
+
+            // Visual excitement
+            this.flashScreen(correct);
+            this.showScorePopup(Math.abs(points), correct);
+            this.checkStreak(teamId, correct);
+            if (correct) this.triggerConfetti();
+
             this.updateScoreboard();
-            
-            // Team that answered correctly gets board control
-            if (points > 0) {
+
+            if (correct) {
                 this.controllingTeam = this.teams.findIndex(t => t.id === teamId);
                 this.updateBoardControl();
             }
         }
+    }
+
+    // ── Visual Excitement Methods ──────────────────────────────────────────
+
+    triggerConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.display = 'block';
+
+        if (this.confettiAnimFrame) {
+            cancelAnimationFrame(this.confettiAnimFrame);
+        }
+
+        const colors = ['#FFCC00', '#4ade80', '#60a5fa', '#f87171', '#a78bfa', '#fb923c', '#ffffff', '#34d399'];
+        const pieces = Array.from({ length: 130 }, () => ({
+            x: Math.random() * canvas.width,
+            y: -20 - Math.random() * 120,
+            w: Math.random() * 13 + 5,
+            h: Math.random() * 7 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rot: Math.random() * 360,
+            rotSpeed: Math.random() * 9 - 4.5,
+            speed: Math.random() * 4.5 + 2,
+            drift: Math.random() * 2.5 - 1.25,
+        }));
+
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let alive = false;
+            pieces.forEach(p => {
+                p.y += p.speed;
+                p.x += p.drift;
+                p.rot += p.rotSpeed;
+                if (p.y < canvas.height + 30) alive = true;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+            });
+            if (alive) {
+                this.confettiAnimFrame = requestAnimationFrame(animate);
+            } else {
+                canvas.style.display = 'none';
+                this.confettiAnimFrame = null;
+            }
+        };
+
+        animate();
+        setTimeout(() => {
+            if (this.confettiAnimFrame) {
+                cancelAnimationFrame(this.confettiAnimFrame);
+                this.confettiAnimFrame = null;
+            }
+            canvas.style.display = 'none';
+        }, 3500);
+    }
+
+    flashScreen(correct) {
+        const flash = document.getElementById('screen-flash');
+        if (!flash) return;
+        flash.style.background = correct
+            ? 'rgba(74, 222, 128, 0.45)'
+            : 'rgba(248, 113, 113, 0.45)';
+        flash.style.display = 'block';
+        flash.classList.remove('flash-anim');
+        void flash.offsetWidth; // reflow to restart animation
+        flash.classList.add('flash-anim');
+        setTimeout(() => {
+            flash.style.display = 'none';
+            flash.classList.remove('flash-anim');
+        }, 650);
+    }
+
+    showScorePopup(points, correct) {
+        const popup = document.createElement('div');
+        popup.className = 'score-popup';
+        popup.textContent = `${correct ? '+' : '-'}$${points.toLocaleString()}`;
+        popup.style.color = correct ? '#4ade80' : '#f87171';
+        popup.style.left = `${25 + Math.random() * 50}%`;
+        popup.style.top = `${15 + Math.random() * 25}%`;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 1500);
+    }
+
+    checkStreak(teamId, correct) {
+        if (this.streaks[teamId] === undefined) this.streaks[teamId] = 0;
+        if (correct) {
+            this.streaks[teamId]++;
+            if (this.streaks[teamId] >= 3) {
+                const team = this.teams.find(t => t.id === teamId);
+                if (team) this.showStreakOverlay(team.name, this.streaks[teamId]);
+            }
+        } else {
+            this.streaks[teamId] = 0;
+        }
+    }
+
+    showStreakOverlay(teamName, count) {
+        const overlay = document.getElementById('streak-overlay');
+        const msg = document.getElementById('streak-message');
+        const banner = document.getElementById('streak-banner');
+        if (!overlay || !msg || !banner) return;
+
+        const labels = { 3: '🔥 3 IN A ROW!', 4: '⚡ 4 IN A ROW!', 5: '💥 5 IN A ROW! UNSTOPPABLE!', 6: '🚀 6 IN A ROW! LEGENDARY!' };
+        msg.textContent = `${teamName}: ${labels[Math.min(count, 6)] || `🔥 ${count} IN A ROW!`}`;
+
+        banner.classList.remove('streak-banner-anim');
+        void banner.offsetWidth;
+        banner.classList.add('streak-banner-anim');
+
+        overlay.style.display = 'block';
+        clearTimeout(this._streakTimeout);
+        this._streakTimeout = setTimeout(() => { overlay.style.display = 'none'; }, 2600);
+    }
+
+    showDailyDoubleReveal(callback) {
+        const ddScreen = document.getElementById('dd-reveal-screen');
+        if (!ddScreen) { if (callback) callback(); return; }
+
+        // Reset and trigger word animations
+        const words = ddScreen.querySelectorAll('.dd-word');
+        words.forEach(w => {
+            w.classList.remove('animate', 'animate-delay');
+            void ddScreen.offsetWidth;
+        });
+        ddScreen.style.display = 'flex';
+        words[0].classList.add('animate');
+        words[1].classList.add('animate-delay');
+
+        setTimeout(() => {
+            ddScreen.style.display = 'none';
+            if (callback) callback();
+        }, 2600);
     }
     
     updateBoardControl() {
@@ -435,19 +580,28 @@ class JeopardyGame {
     updateScoreboard() {
         const teamsContainer = document.getElementById('teams-container');
         teamsContainer.innerHTML = '';
-        
+
         this.teams.forEach(team => {
+            const streak = this.streaks[team.id] || 0;
             const teamDiv = document.createElement('div');
             teamDiv.className = 'team-score-card text-center p-4 rounded-lg min-w-[180px]';
-            
+
             const nameDiv = document.createElement('div');
             nameDiv.className = 'jeopardy-font text-xl gold-text uppercase tracking-wide mb-2';
-            nameDiv.textContent = team.name;
-            
+
+            let streakBadge = '';
+            if (streak >= 3) {
+                const flames = '🔥'.repeat(Math.min(streak - 2, 3));
+                streakBadge = ` <span class="streak-fire">${flames}</span>`;
+            } else if (streak === 2) {
+                streakBadge = ' <span style="font-size:0.8em">🔥</span>';
+            }
+            nameDiv.innerHTML = team.name + streakBadge;
+
             const scoreDiv = document.createElement('div');
             scoreDiv.className = `jeopardy-font text-4xl font-black ${team.score >= 0 ? 'text-white' : 'text-red-400'} white-text-shadow`;
             scoreDiv.textContent = `$${team.score.toLocaleString()}`;
-            
+
             teamDiv.appendChild(nameDiv);
             teamDiv.appendChild(scoreDiv);
             teamsContainer.appendChild(teamDiv);
